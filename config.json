@@ -84,7 +84,7 @@
     ]
   },
   "serpapi": {
-    "enabled": false,
+    "enabled": true,
     "api_key": "",
     "api_key_env": "SERPAPI_KEY",
     "note": "Google Flights via SerpAPI. 100 búsquedas gratis/mes. Regístrate en https://serpapi.com"
