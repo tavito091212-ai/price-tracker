@@ -1,0 +1,95 @@
+name: Price Tracker
+
+on:
+  schedule:
+    # Corre cada hora (minuto 15 para evitar picos de GitHub)
+    - cron: '15 * * * *'
+  workflow_dispatch:
+    inputs:
+      debug:
+        description: 'Activar logs extra'
+        required: false
+        default: 'false'
+
+# Permiso de escritura para poder commitear data de vuelta al repo
+permissions:
+  contents: write
+
+jobs:
+  track:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25   # mata el job si se cuelga (Playwright a veces se queda)
+
+    steps:
+      # ── 1. Checkout ────────────────────────────────────────────────────────
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # necesario para que git push funcione
+
+      # ── 2. Python ──────────────────────────────────────────────────────────
+      - name: Configurar Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+
+      # ── 3. Dependencias ────────────────────────────────────────────────────
+      - name: Instalar dependencias Python
+        run: pip install -r requirements.txt
+
+      - name: Instalar Playwright + Chromium
+        run: |
+          playwright install chromium
+          playwright install-deps chromium
+
+      # ── 4. Correr el tracker ───────────────────────────────────────────────
+      - name: Correr tracker
+        env:
+          # Notificaciones
+          DISCORD_WEBHOOK_URL:       ${{ secrets.DISCORD_WEBHOOK_URL }}
+          NTFY_TOPIC:                ${{ secrets.NTFY_TOPIC }}
+          WHATSAPP_PHONE_NUMBER_ID:  ${{ secrets.WHATSAPP_PHONE_NUMBER_ID }}
+          WHATSAPP_ACCESS_TOKEN:     ${{ secrets.WHATSAPP_ACCESS_TOKEN }}
+          WHATSAPP_TO:               ${{ secrets.WHATSAPP_TO }}
+          # Email (opcional)
+          EMAIL_SENDER:              ${{ secrets.EMAIL_SENDER }}
+          EMAIL_PASSWORD:            ${{ secrets.EMAIL_PASSWORD }}
+          EMAIL_RECEIVER:            ${{ secrets.EMAIL_RECEIVER }}
+          # APIs de precios
+          ODDS_API_KEY:              ${{ secrets.ODDS_API_KEY }}
+          SERPAPI_KEY:               ${{ secrets.SERPAPI_KEY }}
+          KEEPA_API_KEY:             ${{ secrets.KEEPA_API_KEY }}
+          AMADEUS_CLIENT_ID:         ${{ secrets.AMADEUS_CLIENT_ID }}
+          AMADEUS_CLIENT_SECRET:     ${{ secrets.AMADEUS_CLIENT_SECRET }}
+        run: python tracker.py
+
+      # ── 5. Persistir datos en el repo ──────────────────────────────────────
+      # Esto soluciona que GitHub Actions borra todo al terminar el job.
+      # El historial de precios (tracker.db, precios.json) queda guardado en git.
+      - name: Guardar datos de vuelta al repo
+        if: always()   # guardar incluso si el tracker tuvo errores parciales
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Asegura que la carpeta data/ no esté en .gitignore
+          git add -f data/ || true
+          git add -f logs/ || true
+
+          # Solo commitea si hay cambios reales
+          if git diff --cached --quiet; then
+            echo "Sin cambios en datos — nada que commitear"
+          else
+            git commit -m "chore: datos tracker $(date -u '+%Y-%m-%d %H:%M UTC')"
+            git push
+          fi
+
+      # ── 6. Subir logs como artefacto (útil para debugging) ─────────────────
+      - name: Subir logs como artefacto
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: tracker-logs-${{ github.run_number }}
+          path: logs/
+          retention-days: 7

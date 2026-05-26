@@ -18,9 +18,12 @@
   "alert_rise_pct": 10,
   "email": {
     "enabled": false,
-    "sender": "andresnvz3456@gmail.com",
+    "sender": "",
+    "sender_env": "EMAIL_SENDER",
     "password": "",
-    "receiver": "andresnvz3456@gmail.com",
+    "password_env": "EMAIL_PASSWORD",
+    "receiver": "",
+    "receiver_env": "EMAIL_RECEIVER",
     "smtp": "smtp.gmail.com",
     "port": 587
   },
@@ -45,7 +48,8 @@
   "ntfy": {
     "enabled": true,
     "server": "https://ntfy.sh",
-    "topic": "andres-price-tracker-1d93e01f80f0",
+    "topic": "",
+    "topic_env": "NTFY_TOPIC",
     "priority": "default",
     "tags": "moneybag,soccer",
     "click": "",
@@ -62,24 +66,13 @@
     "teams": [
       {
         "name": "Barcelona",
-        "aliases": [
-          "Barcelona",
-          "FC Barcelona"
-        ],
-        "sports": [
-          "soccer_spain_la_liga",
-          "soccer_uefa_champs_league"
-        ]
+        "aliases": ["Barcelona", "FC Barcelona"],
+        "sports": ["soccer_spain_la_liga", "soccer_uefa_champs_league"]
       },
       {
         "name": "Inter Miami",
-        "aliases": [
-          "Inter Miami",
-          "Inter Miami CF"
-        ],
-        "sports": [
-          "soccer_usa_mls"
-        ]
+        "aliases": ["Inter Miami", "Inter Miami CF"],
+        "sports": ["soccer_usa_mls"]
       }
     ]
   },
