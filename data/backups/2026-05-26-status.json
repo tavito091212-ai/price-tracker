@@ -1,0 +1,196 @@
+{
+  "generated_at": "2026-05-26T19:08:56-05:00",
+  "products": [
+    {
+      "id": "rdr2_steam",
+      "name": "Red Dead Redemption 2 - Steam",
+      "url": "https://store.steampowered.com/app/1174180/Red_Dead_Redemption_2/",
+      "currency": "COP",
+      "target": 30000.0,
+      "price": 5999.0,
+      "source": ".game_purchase_price.price",
+      "checked_at": "2026-05-26T19:08:06-05:00",
+      "state": "ok",
+      "state_label": "OK",
+      "state_detail": "Precio detectado",
+      "stats": {
+        "current": 5999.0,
+        "min": 5999.0,
+        "max": 5999.0,
+        "avg": 5999.0,
+        "avg_7": 5999.0,
+        "count": 1,
+        "previous": 5999.0,
+        "change_pct": 0.0,
+        "is_historical_low": false,
+        "last_seen": "2026-05-27 00:08",
+        "trend": "flat"
+      },
+      "kind": "game",
+      "kind_label": "Juego",
+      "health": {
+        "checks": 0,
+        "detected": 0,
+        "missed": 0,
+        "success_rate": null,
+        "last_seen": null,
+        "last_state": "pending",
+        "last_source": "pending"
+      }
+    },
+    {
+      "id": "echo_dot_5",
+      "name": "Amazon Echo Dot 5ta Gen",
+      "url": "https://www.amazon.com/Amazon-vibrant-helpful-routines-Charcoal/dp/B09B8V1LZ3",
+      "currency": "USD",
+      "target": 35,
+      "price": 49.99,
+      "source": "span.a-price.aok-align-center .a-offscreen",
+      "checked_at": "2026-05-26T19:08:06-05:00",
+      "state": "ok",
+      "state_label": "OK",
+      "state_detail": "Precio detectado",
+      "stats": {
+        "current": 49.99,
+        "min": 49.99,
+        "max": 49.99,
+        "avg": 49.99,
+        "avg_7": 49.99,
+        "count": 1,
+        "previous": 49.99,
+        "change_pct": 0.0,
+        "is_historical_low": false,
+        "last_seen": "2026-05-27 00:08",
+        "trend": "flat"
+      },
+      "kind": "amazon",
+      "kind_label": "Amazon",
+      "health": {
+        "checks": 0,
+        "detected": 0,
+        "missed": 0,
+        "success_rate": null,
+        "last_seen": null,
+        "last_state": "pending",
+        "last_source": "pending"
+      }
+    },
+    {
+      "id": "vuelo_bog_mia",
+      "name": "Vuelo Bogotá → Miami (Jun-Jul)",
+      "url": "https://www.skyscanner.com.co/transport/flights/bog/mia/2506/2507/?adultsv2=1&cabinclass=economy",
+      "currency": "COP",
+      "target": 1500000,
+      "price": null,
+      "source": "not_found",
+      "checked_at": "2026-05-26T19:08:06-05:00",
+      "state": "missing",
+      "state_label": "Sin precio",
+      "state_detail": "No se encontro precio usable",
+      "kind": "flight",
+      "kind_label": "Vuelo",
+      "health": {
+        "checks": 0,
+        "detected": 0,
+        "missed": 0,
+        "success_rate": null,
+        "last_seen": null,
+        "last_state": "pending",
+        "last_source": "pending"
+      },
+      "stats": {}
+    },
+    {
+      "id": "vuelo_bga_mia",
+      "name": "Vuelo Bucaramanga → Miami (Jun-Jul)",
+      "url": "https://www.skyscanner.com.co/transport/flights/bga/mia/2506/2507/?adultsv2=1&cabinclass=economy",
+      "currency": "COP",
+      "target": 1800000,
+      "price": null,
+      "source": "not_found",
+      "checked_at": "2026-05-26T19:08:06-05:00",
+      "state": "missing",
+      "state_label": "Sin precio",
+      "state_detail": "No se encontro precio usable",
+      "kind": "flight",
+      "kind_label": "Vuelo",
+      "health": {
+        "checks": 0,
+        "detected": 0,
+        "missed": 0,
+        "success_rate": null,
+        "last_seen": null,
+        "last_state": "pending",
+        "last_source": "pending"
+      },
+      "stats": {}
+    }
+  ],
+  "alerts": [
+    {
+      "name": "Red Dead Redemption 2 - Steam",
+      "url": "https://store.steampowered.com/app/1174180/Red_Dead_Redemption_2/",
+      "current": 5999.0,
+      "target": 30000.0,
+      "currency": "COP",
+      "drop_pct": 0.0,
+      "id": "rdr2_steam",
+      "reason": "target"
+    }
+  ],
+  "odds": [
+    {
+      "error": "Falta odds.api_key o la variable ODDS_API_KEY"
+    }
+  ],
+  "history": {
+    "rdr2_steam": {
+      "name": "Red Dead Redemption 2 - Steam",
+      "url": "https://store.steampowered.com/app/1174180/Red_Dead_Redemption_2/",
+      "currency": "COP",
+      "prices": [
+        {
+          "price": 5999.0,
+          "date": "2026-05-27 00:08",
+          "source": ".game_purchase_price.price"
+        }
+      ]
+    },
+    "echo_dot_5": {
+      "name": "Amazon Echo Dot 5ta Gen",
+      "url": "https://www.amazon.com/Amazon-vibrant-helpful-routines-Charcoal/dp/B09B8V1LZ3",
+      "currency": "USD",
+      "prices": [
+        {
+          "price": 49.99,
+          "date": "2026-05-27 00:08",
+          "source": "span.a-price.aok-align-center .a-offscreen"
+        }
+      ]
+    }
+  },
+  "summary": {
+    "checked": 4,
+    "detected": 2,
+    "missing": 2,
+    "blocked": 0,
+    "timeout": 0,
+    "problems": [
+      "- Vuelo Bogotá → Miami (Jun-Jul): Sin precio | No se encontro precio usable",
+      "- Vuelo Bucaramanga → Miami (Jun-Jul): Sin precio | No se encontro precio usable"
+    ]
+  },
+  "bot": {
+    "interval_minutes": 60,
+    "daily_report_enabled": true,
+    "diagnostics_enabled": true,
+    "backup_enabled": true,
+    "last_backup_marker": ""
+  },
+  "channels": {
+    "discord": true,
+    "ntfy": true,
+    "whatsapp": false,
+    "email": false
+  }
+}

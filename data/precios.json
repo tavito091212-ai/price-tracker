@@ -1,0 +1,26 @@
+{
+  "rdr2_steam": {
+    "name": "Red Dead Redemption 2 - Steam",
+    "url": "https://store.steampowered.com/app/1174180/Red_Dead_Redemption_2/",
+    "currency": "COP",
+    "prices": [
+      {
+        "price": 5999.0,
+        "date": "2026-05-27 00:08",
+        "source": ".game_purchase_price.price"
+      }
+    ]
+  },
+  "echo_dot_5": {
+    "name": "Amazon Echo Dot 5ta Gen",
+    "url": "https://www.amazon.com/Amazon-vibrant-helpful-routines-Charcoal/dp/B09B8V1LZ3",
+    "currency": "USD",
+    "prices": [
+      {
+        "price": 49.99,
+        "date": "2026-05-27 00:08",
+        "source": "span.a-price.aok-align-center .a-offscreen"
+      }
+    ]
+  }
+}
