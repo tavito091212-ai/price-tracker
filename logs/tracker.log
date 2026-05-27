@@ -95,3 +95,35 @@
 2026-05-27 02:21:03,221  INFO    Esperando que carguen los vuelos (8s)...
 2026-05-27 02:21:21,246  WARNING    ❌ Skyscanner bloqueó el bot — prueba manualmente en el link
 2026-05-27 02:21:21,274  WARNING    Saltando — no se obtuvo precio
+2026-05-27 02:24:22,952  INFO  
+──────────────────────────────────────────────────
+2026-05-27 02:24:22,952  INFO  ▶ Revisando 4 producto(s) — 2026-05-27 02:24
+2026-05-27 02:24:22,952  INFO  ──────────────────────────────────────────────────
+2026-05-27 02:24:24,107  INFO  
+🔍 Red Dead Redemption 2 - Steam
+2026-05-27 02:24:28,649  INFO    ✅ Steam precio [.game_purchase_price.price]: $59.99 → 5,999.00
+2026-05-27 02:24:28,691  INFO    Actual: COP 5,999  |  Min: 5,999  |  Max: 5,999  |  Prom: 5,999
+2026-05-27 02:24:28,692  INFO    Alerta repetida omitida por cooldown
+2026-05-27 02:24:28,692  INFO  
+🔍 Amazon Echo Dot 5ta Gen
+2026-05-27 02:24:28,692  INFO    Keepa no configurado; usando scraping Amazon como respaldo
+2026-05-27 02:24:36,404  INFO    ✅ Amazon precio [span.a-price.aok-align-center .a-offscreen]: $49.99 → 49.99
+2026-05-27 02:24:36,457  INFO    Actual: USD 50  |  Min: 50  |  Max: 50  |  Prom: 50
+2026-05-27 02:24:36,458  INFO  
+🔍 Vuelo Bogotá → Miami (Jun-Jul)
+2026-05-27 02:24:37,672  INFO    ✅ SerpAPI vuelo más barato: COP 1,131,410
+2026-05-27 02:24:37,673  INFO    Actual: COP 1,131,410  |  Min: 1,131,410  |  Max: 1,131,410  |  Prom: 1,131,410
+2026-05-27 02:24:37,674  INFO  
+🔍 Vuelo Bucaramanga → Miami (Jun-Jul)
+2026-05-27 02:24:38,410  INFO    ✅ SerpAPI vuelo más barato: COP 1,178,780
+2026-05-27 02:24:38,411  INFO    Actual: COP 1,178,780  |  Min: 1,178,780  |  Max: 1,178,780  |  Prom: 1,178,780
+2026-05-27 02:24:38,424  INFO  
+✅ Revisión completa — 2 alerta(s)
+
+2026-05-27 02:24:38,771  INFO  Mensaje enviado a Discord
+2026-05-27 02:24:39,015  INFO  Mensaje enviado a Discord
+2026-05-27 02:24:39,015  WARNING  ntfy está activado, pero falta ntfy.topic en config.json
+2026-05-27 02:24:39,253  INFO  Mensaje enviado a Discord
+2026-05-27 02:24:39,253  WARNING  ntfy está activado, pero falta ntfy.topic en config.json
+2026-05-27 02:24:39,563  INFO  Mensaje enviado a Discord
+2026-05-27 02:24:39,563  WARNING  ntfy está activado, pero falta ntfy.topic en config.json

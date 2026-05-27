@@ -18,6 +18,11 @@
         "price": 5999.0,
         "date": "2026-05-27 02:20",
         "source": ".game_purchase_price.price"
+      },
+      {
+        "price": 5999.0,
+        "date": "2026-05-27 02:24",
+        "source": ".game_purchase_price.price"
       }
     ]
   },
@@ -40,6 +45,35 @@
         "price": 49.99,
         "date": "2026-05-27 02:20",
         "source": "span.a-price.aok-align-center .a-offscreen"
+      },
+      {
+        "price": 49.99,
+        "date": "2026-05-27 02:24",
+        "source": "span.a-price.aok-align-center .a-offscreen"
+      }
+    ]
+  },
+  "vuelo_bog_mia": {
+    "name": "Vuelo Bogotá → Miami (Jun-Jul)",
+    "url": "https://www.skyscanner.com.co/transport/flights/bog/mia/2506/2507/?adultsv2=1&cabinclass=economy",
+    "currency": "COP",
+    "prices": [
+      {
+        "price": 1131410.0,
+        "date": "2026-05-27 02:24",
+        "source": "serpapi"
+      }
+    ]
+  },
+  "vuelo_bga_mia": {
+    "name": "Vuelo Bucaramanga → Miami (Jun-Jul)",
+    "url": "https://www.skyscanner.com.co/transport/flights/bga/mia/2506/2507/?adultsv2=1&cabinclass=economy",
+    "currency": "COP",
+    "prices": [
+      {
+        "price": 1178780.0,
+        "date": "2026-05-27 02:24",
+        "source": "serpapi"
       }
     ]
   }

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-26T21:21:21-05:00",
+  "generated_at": "2026-05-26T21:24:38-05:00",
   "products": [
     {
       "id": "rdr2_steam",
@@ -9,7 +9,7 @@
       "target": 30000.0,
       "price": 5999.0,
       "source": ".game_purchase_price.price",
-      "checked_at": "2026-05-26T21:20:30-05:00",
+      "checked_at": "2026-05-26T21:24:23-05:00",
       "state": "ok",
       "state_label": "OK",
       "state_detail": "Precio detectado",
@@ -19,21 +19,21 @@
         "max": 5999.0,
         "avg": 5999.0,
         "avg_7": 5999.0,
-        "count": 3,
+        "count": 4,
         "previous": 5999.0,
         "change_pct": 0.0,
         "is_historical_low": false,
-        "last_seen": "2026-05-27 02:20",
+        "last_seen": "2026-05-27 02:24",
         "trend": "flat"
       },
       "kind": "game",
       "kind_label": "Juego",
       "health": {
-        "checks": 2,
-        "detected": 2,
+        "checks": 3,
+        "detected": 3,
         "missed": 0,
         "success_rate": 1.0,
-        "last_seen": "2026-05-26T21:11:40-05:00",
+        "last_seen": "2026-05-26T21:20:30-05:00",
         "last_state": "ok",
         "last_source": ".game_purchase_price.price"
       }
@@ -46,7 +46,7 @@
       "target": 35,
       "price": 49.99,
       "source": "span.a-price.aok-align-center .a-offscreen",
-      "checked_at": "2026-05-26T21:20:30-05:00",
+      "checked_at": "2026-05-26T21:24:23-05:00",
       "state": "ok",
       "state_label": "OK",
       "state_detail": "Precio detectado",
@@ -56,21 +56,21 @@
         "max": 49.99,
         "avg": 49.99,
         "avg_7": 49.99,
-        "count": 3,
+        "count": 4,
         "previous": 49.99,
         "change_pct": 0.0,
         "is_historical_low": false,
-        "last_seen": "2026-05-27 02:20",
+        "last_seen": "2026-05-27 02:24",
         "trend": "flat"
       },
       "kind": "amazon",
       "kind_label": "Amazon",
       "health": {
-        "checks": 2,
-        "detected": 2,
+        "checks": 3,
+        "detected": 3,
         "missed": 0,
         "success_rate": 1.0,
-        "last_seen": "2026-05-26T21:11:40-05:00",
+        "last_seen": "2026-05-26T21:20:30-05:00",
         "last_state": "ok",
         "last_source": "span.a-price.aok-align-center .a-offscreen"
       }
@@ -81,24 +81,36 @@
       "url": "https://www.skyscanner.com.co/transport/flights/bog/mia/2506/2507/?adultsv2=1&cabinclass=economy",
       "currency": "COP",
       "target": 1500000,
-      "price": null,
-      "source": "not_found",
-      "checked_at": "2026-05-26T21:20:30-05:00",
-      "state": "missing",
-      "state_label": "Sin precio",
-      "state_detail": "No se encontro precio usable",
+      "price": 1131410.0,
+      "source": "serpapi",
+      "checked_at": "2026-05-26T21:24:23-05:00",
+      "state": "ok",
+      "state_label": "OK",
+      "state_detail": "Precio detectado",
+      "stats": {
+        "current": 1131410.0,
+        "min": 1131410.0,
+        "max": 1131410.0,
+        "avg": 1131410.0,
+        "avg_7": 1131410.0,
+        "count": 1,
+        "previous": 1131410.0,
+        "change_pct": 0.0,
+        "is_historical_low": false,
+        "last_seen": "2026-05-27 02:24",
+        "trend": "flat"
+      },
       "kind": "flight",
       "kind_label": "Vuelo",
       "health": {
-        "checks": 2,
+        "checks": 3,
         "detected": 0,
-        "missed": 2,
+        "missed": 3,
         "success_rate": 0.0,
         "last_seen": null,
         "last_state": "missing",
         "last_source": "not_found"
-      },
-      "stats": {}
+      }
     },
     {
       "id": "vuelo_bga_mia",
@@ -106,27 +118,60 @@
       "url": "https://www.skyscanner.com.co/transport/flights/bga/mia/2506/2507/?adultsv2=1&cabinclass=economy",
       "currency": "COP",
       "target": 1800000,
-      "price": null,
-      "source": "not_found",
-      "checked_at": "2026-05-26T21:20:30-05:00",
-      "state": "missing",
-      "state_label": "Sin precio",
-      "state_detail": "No se encontro precio usable",
+      "price": 1178780.0,
+      "source": "serpapi",
+      "checked_at": "2026-05-26T21:24:23-05:00",
+      "state": "ok",
+      "state_label": "OK",
+      "state_detail": "Precio detectado",
+      "stats": {
+        "current": 1178780.0,
+        "min": 1178780.0,
+        "max": 1178780.0,
+        "avg": 1178780.0,
+        "avg_7": 1178780.0,
+        "count": 1,
+        "previous": 1178780.0,
+        "change_pct": 0.0,
+        "is_historical_low": false,
+        "last_seen": "2026-05-27 02:24",
+        "trend": "flat"
+      },
       "kind": "flight",
       "kind_label": "Vuelo",
       "health": {
-        "checks": 2,
+        "checks": 3,
         "detected": 0,
-        "missed": 2,
+        "missed": 3,
         "success_rate": 0.0,
         "last_seen": null,
         "last_state": "missing",
         "last_source": "not_found"
-      },
-      "stats": {}
+      }
     }
   ],
-  "alerts": [],
+  "alerts": [
+    {
+      "name": "Vuelo Bogotá → Miami (Jun-Jul)",
+      "url": "https://www.skyscanner.com.co/transport/flights/bog/mia/2506/2507/?adultsv2=1&cabinclass=economy",
+      "current": 1131410.0,
+      "target": 1500000,
+      "currency": "COP",
+      "drop_pct": 0.0,
+      "id": "vuelo_bog_mia",
+      "reason": "target"
+    },
+    {
+      "name": "Vuelo Bucaramanga → Miami (Jun-Jul)",
+      "url": "https://www.skyscanner.com.co/transport/flights/bga/mia/2506/2507/?adultsv2=1&cabinclass=economy",
+      "current": 1178780.0,
+      "target": 1800000,
+      "currency": "COP",
+      "drop_pct": 0.0,
+      "id": "vuelo_bga_mia",
+      "reason": "target"
+    }
+  ],
   "odds": [
     {
       "error": "No encontré partidos con cuotas para los equipos configurados"
@@ -152,6 +197,11 @@
           "price": 5999.0,
           "date": "2026-05-27 02:20",
           "source": ".game_purchase_price.price"
+        },
+        {
+          "price": 5999.0,
+          "date": "2026-05-27 02:24",
+          "source": ".game_purchase_price.price"
         }
       ]
     },
@@ -174,19 +224,48 @@
           "price": 49.99,
           "date": "2026-05-27 02:20",
           "source": "span.a-price.aok-align-center .a-offscreen"
+        },
+        {
+          "price": 49.99,
+          "date": "2026-05-27 02:24",
+          "source": "span.a-price.aok-align-center .a-offscreen"
+        }
+      ]
+    },
+    "vuelo_bog_mia": {
+      "name": "Vuelo Bogotá → Miami (Jun-Jul)",
+      "url": "https://www.skyscanner.com.co/transport/flights/bog/mia/2506/2507/?adultsv2=1&cabinclass=economy",
+      "currency": "COP",
+      "prices": [
+        {
+          "price": 1131410.0,
+          "date": "2026-05-27 02:24",
+          "source": "serpapi"
+        }
+      ]
+    },
+    "vuelo_bga_mia": {
+      "name": "Vuelo Bucaramanga → Miami (Jun-Jul)",
+      "url": "https://www.skyscanner.com.co/transport/flights/bga/mia/2506/2507/?adultsv2=1&cabinclass=economy",
+      "currency": "COP",
+      "prices": [
+        {
+          "price": 1178780.0,
+          "date": "2026-05-27 02:24",
+          "source": "serpapi"
         }
       ]
     }
   },
   "summary": {
     "checked": 4,
-    "detected": 2,
-    "missing": 2,
+    "detected": 4,
+    "missing": 0,
     "blocked": 0,
     "timeout": 0,
     "problems": [
-      "- Vuelo Bogotá → Miami (Jun-Jul): Sin precio | No se encontro precio usable",
-      "- Vuelo Bucaramanga → Miami (Jun-Jul): Sin precio | No se encontro precio usable"
+      "- Vuelo Bogotá → Miami (Jun-Jul): OK | Precio detectado",
+      "- Vuelo Bucaramanga → Miami (Jun-Jul): OK | Precio detectado"
     ]
   },
   "bot": {
