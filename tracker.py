@@ -613,6 +613,7 @@ def fetch_serpapi_flight_price(config: dict, product: dict) -> tuple[float | Non
         "outbound_date": route["departure_date"],
         "adults": route.get("adults", "1"),
         "currency": currency,
+        "type": "2",
         "hl": "es",
         "api_key": api_key,
     })
@@ -1811,6 +1812,25 @@ def sparkline(values: list[float]) -> str:
         idx = round((value - low) / (high - low) * (len(blocks) - 1))
         scaled.append(blocks[idx])
     return "".join(scaled)
+
+
+def format_odds_lines(odds_results: list[dict]) -> list[str]:
+    """Formatea los resultados de cuotas para mostrar en texto o Discord."""
+    lines = []
+    for item in odds_results[:8]:
+        if item.get("error"):
+            lines.append(f"- {item.get('team', 'Cuotas')}: {item['error']}")
+            continue
+        match_str = f"{item['home_team']} vs {item['away_team']}"
+        when = format_match_time(item.get("commence_time", ""))
+        outcomes = item.get("outcomes", [])[:3]
+        prices = [f"{o['name']} {o['price']} ({o['bookmaker']})" for o in outcomes]
+        odds_text = " | ".join(prices) if prices else "sin cuotas"
+        lines.append(f"- {item['team']}: {match_str} | {when} | {odds_text}")
+    if not lines:
+        lines.append("- Cuotas: sin datos")
+    return lines
+
 
 
 def render_dashboard(config: dict, history: dict, results: list[dict], alerts: list[dict], odds_results: list[dict] | None):
