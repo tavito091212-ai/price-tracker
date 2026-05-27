@@ -63,3 +63,35 @@
 2026-05-27 02:12:11,183  INFO    Esperando que carguen los vuelos (8s)...
 2026-05-27 02:12:29,202  WARNING    ❌ Skyscanner bloqueó el bot — prueba manualmente en el link
 2026-05-27 02:12:29,226  WARNING    Saltando — no se obtuvo precio
+2026-05-27 02:20:30,466  INFO  
+──────────────────────────────────────────────────
+2026-05-27 02:20:30,466  INFO  ▶ Revisando 4 producto(s) — 2026-05-27 02:20
+2026-05-27 02:20:30,466  INFO  ──────────────────────────────────────────────────
+2026-05-27 02:20:31,122  INFO  
+🔍 Red Dead Redemption 2 - Steam
+2026-05-27 02:20:35,811  INFO    ✅ Steam precio [.game_purchase_price.price]: $59.99 → 5,999.00
+2026-05-27 02:20:35,849  INFO    Actual: COP 5,999  |  Min: 5,999  |  Max: 5,999  |  Prom: 5,999
+2026-05-27 02:20:35,849  INFO    Alerta repetida omitida por cooldown
+2026-05-27 02:20:35,849  INFO  
+🔍 Amazon Echo Dot 5ta Gen
+2026-05-27 02:20:35,849  INFO    Keepa no configurado; usando scraping Amazon como respaldo
+2026-05-27 02:20:43,332  INFO    ✅ Amazon precio [span.a-price.aok-align-center .a-offscreen]: $49.99 → 49.99
+2026-05-27 02:20:43,383  INFO    Actual: USD 50  |  Min: 50  |  Max: 50  |  Prom: 50
+2026-05-27 02:20:43,383  INFO  
+🔍 Vuelo Bogotá → Miami (Jun-Jul)
+2026-05-27 02:20:43,520  WARNING    SerpAPI error: HTTP 400 {
+  "error": "`return_date` is required if `type` is `1` (Round trip)."
+}
+2026-05-27 02:20:43,520  INFO    APIs de vuelo no disponibles; usando Skyscanner como respaldo
+2026-05-27 02:20:44,434  INFO    Esperando que carguen los vuelos (8s)...
+2026-05-27 02:21:02,461  WARNING    ❌ Skyscanner bloqueó el bot — prueba manualmente en el link
+2026-05-27 02:21:02,486  WARNING    Saltando — no se obtuvo precio
+2026-05-27 02:21:02,487  INFO  
+🔍 Vuelo Bucaramanga → Miami (Jun-Jul)
+2026-05-27 02:21:02,609  WARNING    SerpAPI error: HTTP 400 {
+  "error": "`return_date` is required if `type` is `1` (Round trip)."
+}
+2026-05-27 02:21:02,609  INFO    APIs de vuelo no disponibles; usando Skyscanner como respaldo
+2026-05-27 02:21:03,221  INFO    Esperando que carguen los vuelos (8s)...
+2026-05-27 02:21:21,246  WARNING    ❌ Skyscanner bloqueó el bot — prueba manualmente en el link
+2026-05-27 02:21:21,274  WARNING    Saltando — no se obtuvo precio
