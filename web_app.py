@@ -275,6 +275,14 @@ INDEX_HTML = """<!doctype html>
     li { margin: 8px 0; }
     .tiny { font-size: 12px; color: var(--muted); }
     .series { height: 44px; color: var(--accent); font-size: 25px; line-height: 1; letter-spacing: 0; overflow: hidden; }
+    /* Estilos para cuotas/odds */
+    li.match { background: linear-gradient(135deg, var(--panel-2), var(--panel)); padding: 12px; border-radius: 6px; margin: 10px 0; border-left: 3px solid var(--accent); }
+    .comp { font-size: 13px; color: var(--accent); margin-bottom: 6px; }
+    .teams { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--text); }
+    .details { display: grid; grid-template-columns: auto 1fr auto; gap: 12px; font-size: 12px; color: var(--muted); align-items: center; }
+    .details span { display: flex; align-items: center; gap: 4px; }
+    .details strong { color: var(--ok); }
+    li.error { background: var(--panel-2); padding: 10px; border-radius: 6px; color: var(--bad); border-left: 3px solid var(--bad); }
     @media (max-width: 920px) {
       header, .layout { display: block; }
       .metrics, .grid { grid-template-columns: 1fr; }
@@ -393,7 +401,24 @@ INDEX_HTML = """<!doctype html>
           <p class="tiny">${escapeHtml(item.state_detail || '')}</p>
         </article>`;
       }).join('');
-      document.getElementById('odds').innerHTML = (data.status.odds || []).slice(0, 8).map(o => `<li>${escapeHtml(o.error || `${o.home_team} vs ${o.away_team}`)}</li>`).join('') || '<li>Sin cuotas</li>';
+      document.getElementById('odds').innerHTML = (data.status.odds || []).slice(0, 12).map(o => {
+        if (o.error) return `<li class="error"><strong>⚠️ ${escapeHtml(o.error)}</strong></li>`;
+        
+        const time = o.commence_time ? new Date(o.commence_time).toLocaleString('es-CO') : 'TBD';
+        const competition = o.competition || o.sport || 'Partido';
+        const bestPrice = o.outcomes?.[0]?.best_price || 'N/A';
+        const bookmaker = o.outcomes?.[0]?.bookmakers?.[0]?.title || 'Varios';
+        
+        return `<li class="match">
+          <div class="comp"><strong>⚽ ${escapeHtml(competition)}</strong></div>
+          <div class="teams">${escapeHtml(o.home_team)} vs ${escapeHtml(o.away_team)}</div>
+          <div class="details">
+            <span class="time">🕐 ${escapeHtml(time)}</span>
+            <span class="odds">Cuota: <strong>${escapeHtml(String(bestPrice))}</strong></span>
+            <span class="bookie">Via ${escapeHtml(bookmaker)}</span>
+          </div>
+        </li>`;
+      }).join('') || '<li>Sin cuotas disponibles</li>';
       document.getElementById('alerts').innerHTML = data.alerts.slice(0, 8).map(a => `<li>${escapeHtml(a.name)}<br><span class="tiny">${escapeHtml(a.sent_at)}</span></li>`).join('') || '<li>Sin alertas recientes</li>';
       const health = data.health || {};
       const channels = health.channels || {};

@@ -2,20 +2,21 @@
 
 Rastreador de precios automático que corre cada hora en GitHub Actions y te notifica por Discord, ntfy o WhatsApp cuando un precio baja a tu objetivo.
 
-Soporta productos de **Falabella**, **MercadoLibre**, **Amazon**, **Steam**, vuelos de **Skyscanner** (vía SerpAPI), y cuotas deportivas de la **Odds API**.
+Soporta productos de **Falabella**, **MercadoLibre**, **Amazon**, vuelos de **Google Flights** (vía SerpAPI o Amadeus API), próximos lanzamientos en **Game Pass** con fechas, y cuotas deportivas de la **Odds API** (Champions League, Mundial, etc.).
 
 ---
 
 ## ✨ Funcionalidades
 
 - 🛒 Scraping con Playwright (anti-bot mejorado por tienda)
-- ✈️ Precios de vuelos via SerpAPI o Amadeus API
-- 🎮 Precios de Steam con bypass de verificación de edad
+- ✈️ Precios de vuelos via SerpAPI o Amadeus API con links propios
+- 🎮 Próximos lanzamientos en Game Pass con fechas de salida
 - 📦 Precios de Amazon con soporte Keepa API
-- ⚽ Cuotas deportivas en tiempo real (The Odds API)
+- ⚽ Cuotas deportivas en tiempo real (Champions League, Eliminatorias 2026, Copa Libertadores)
 - 🔔 Alertas por Discord, ntfy, WhatsApp y Email
-- 📊 Dashboard HTML con historial de precios
-- 💾 Historial persistido en SQLite (commiteado al repo automáticamente)
+- 📊 Dashboard HTML con historial de precios y cuotas
+- 💰 Soporte para rastreo de cuotas/planes de pago
+- 💾 Historial persistido en JSON
 - 🔁 Corre solo en GitHub Actions, gratis
 
 ---
@@ -31,32 +32,58 @@ pip install -r requirements.txt
 playwright install chromium
 ```
 
-### 2. Configura tus productos en `config.json`
+### 2. Configura las APIs (Local)
 
-Edita la sección `"products"` con las URLs y precios objetivo que quieres rastrear.
+Copia `.env.example` a `.env` y completa con tus claves:
 
-### 3. Agrega tus Secrets en GitHub
+```bash
+cp .env.example .env
+# Edita .env con tus valores reales
+```
+
+**APIs disponibles:**
+- 🎯 **ODDS_API_KEY** → https://api.odds-api.com (cuotas deportivas)
+- ✈️ **AMADEUS_CLIENT_ID/SECRET** → https://developer.amadeus.com (precios de vuelos)
+- 💬 **DISCORD_WEBHOOK_URL** → Webhook de tu servidor Discord
+- 🔔 **Otros** → Ver `.env.example` para opcionales
+
+### 3. Configura tus productos en `config.json`
+
+Edita la sección `"products"` con:
+- URLs de productos
+- Precios objetivo
+- Opciones de cuotas (si aplica)
+
+### 4. Prueba localmente
+
+```bash
+python tracker.py              # Una sola ejecución
+python tracker.py --watch      # Modo watch (cada X minutos)
+python web_app.py              # Dashboard en http://localhost:8765
+```
+
+### 5. Sube a GitHub (Con los Secrets)
 
 Ve a tu repo → **Settings → Secrets and variables → Actions → New repository secret**
 
-| Secret | Descripción |
-|--------|------------|
-| `DISCORD_WEBHOOK_URL` | URL del webhook de tu canal Discord |
-| `NTFY_TOPIC` | Tema de ntfy.sh (ej. `mi-price-tracker-abc123`) |
-| `ODDS_API_KEY` | API key de [the-odds-api.com](https://the-odds-api.com) |
-| `SERPAPI_KEY` | API key de [serpapi.com](https://serpapi.com) (vuelos) |
-| `EMAIL_SENDER` | Gmail que envía las alertas |
-| `EMAIL_PASSWORD` | App password de Gmail (no la contraseña normal) |
-| `EMAIL_RECEIVER` | Email donde recibes las alertas |
-| `KEEPA_API_KEY` | *(Opcional)* Para precios confiables de Amazon |
-| `AMADEUS_CLIENT_ID` | *(Opcional)* Para vuelos via Amadeus |
-| `AMADEUS_CLIENT_SECRET` | *(Opcional)* Para vuelos via Amadeus |
+Copia **TODOS** los valores de tu `.env` como secrets en GitHub:
 
-> **Nota sobre Gmail:** Necesitas activar verificación en 2 pasos y generar un *App Password* en [myaccount.google.com/apppasswords](https://myaccount.google.com/apppasswords).
+| Secret | Desde .env | Descripción |
+|--------|-----------|------------|
+| `DISCORD_WEBHOOK_URL` | DISCORD_WEBHOOK_URL | Notificaciones Discord |
+| `ODDS_API_KEY` | ODDS_API_KEY | Cuotas deportivas |
+| `AMADEUS_CLIENT_ID` | AMADEUS_CLIENT_ID | Precios de vuelos |
+| `AMADEUS_CLIENT_SECRET` | AMADEUS_CLIENT_SECRET | Precios de vuelos |
+| `SERPAPI_KEY` | SERPAPI_KEY | *(Opcional)* Google Flights |
+| `KEEPA_API_KEY` | KEEPA_API_KEY | *(Opcional)* Amazon histórico |
+| `GAMEPASS_API_KEY` | GAMEPASS_API_KEY | *(Opcional)* Game Pass |
+| `WHATSAPP_*` | WHATSAPP_* | *(Opcional)* WhatsApp |
 
-### 4. Activa el workflow
+> **⚠️ IMPORTANTE:** Nunca subase `.env` a GitHub. Ya está en `.gitignore`.
 
-El workflow en `.github/workflows/tracker.yml` corre automáticamente cada hora. También puedes lanzarlo manualmente desde la pestaña **Actions → Run workflow**.
+### 6. Activa el workflow
+
+El workflow en `.github/workflows/tracker.yml` corre automáticamente cada hora. También puedes lanzarlo manualmente desde **Actions → Run workflow**.
 
 ---
 

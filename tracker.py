@@ -136,12 +136,6 @@ STORE_SELECTORS = {
         "span.a-price .a-offscreen",
         "#priceblock_ourprice",
     ],
-    "steampowered.com": [
-        ".game_purchase_price.price",
-        ".discount_final_price",
-        "[data-price-final]",
-        ".game_area_purchase_game .game_purchase_price",
-    ],
     "skyscanner.com": [
         "[class*='Price_mainPriceContainer'] span",
         "[data-testid='price']",
@@ -173,7 +167,6 @@ STORE_SELECTORS = {
 
 # Sitios que necesitan manejo especial
 SPECIAL_SITES = {
-    "steampowered.com": "steam",
     "skyscanner.com": "skyscanner",
 }
 
@@ -362,56 +355,6 @@ def get_special_site(url: str) -> str | None:
         if domain in url:
             return name
     return None
-
-
-def scrape_steam(page, url: str, expected_currency: str | None = None) -> tuple[float | None, str]:
-    """Steam: bypasa verificación de edad con cookies y extrae precio."""
-    # Cookies para saltarse age gate
-    page.context.add_cookies([
-        {"name": "birthtime", "value": "631152001", "domain": "store.steampowered.com", "path": "/"},
-        {"name": "mature_content", "value": "1",    "domain": "store.steampowered.com", "path": "/"},
-        {"name": "lastagecheckage", "value": "1-0-2000", "domain": "store.steampowered.com", "path": "/"},
-    ])
-    page.goto(url, wait_until="domcontentloaded", timeout=30_000)
-    page.wait_for_timeout(3000)
-
-    # Si aparece el age gate, llenarlo
-    try:
-        if page.query_selector("#ageYear"):
-            page.select_option("#ageYear", "2000")
-            page.click("#view_product_page_btn")
-            page.wait_for_timeout(2500)
-    except Exception:
-        pass
-
-    selectors = STORE_SELECTORS["steampowered.com"]
-    for sel in selectors:
-        try:
-            el = page.query_selector(sel)
-            if el:
-                raw = el.inner_text().strip()
-                # Steam a veces pone el precio como atributo
-                if not raw:
-                    raw = el.get_attribute("data-price-final") or ""
-                    if raw:
-                        raw = str(int(raw) / 100)  # Steam guarda en centavos
-                price = clean_price(raw, expected_currency)
-                if price and price > 0:
-                    log.info(f"  ✅ Steam precio [{sel}]: {raw} → {price:,.2f}")
-                    return price, sel
-        except Exception:
-            continue
-
-    # Buscar en el HTML directamente el JSON de precio de Steam
-    content = page.content()
-    match = re.search(r'"final_formatted"\s*:\s*"([^"]+)"', content)
-    if match:
-        price = clean_price(match.group(1), expected_currency)
-        if price and price > 0:
-            log.info(f"  ✅ Steam precio por JSON: {match.group(1)} → {price}")
-            return price, "_json"
-
-    return None, "not_found"
 
 
 def scrape_skyscanner(page, url: str, expected_currency: str | None = None) -> tuple[float | None, str]:
@@ -806,9 +749,6 @@ def scrape_price(url: str, playwright_instance, expected_currency: str | None = 
     try:
         special = get_special_site(url)
 
-        if special == "steam":
-            return scrape_steam(page, url, expected_currency)
-
         if special == "skyscanner":
             return scrape_skyscanner(page, url, expected_currency)
 
@@ -936,8 +876,17 @@ def fetch_tracked_odds(config: dict) -> list[dict]:
         return [{"error": "Falta odds.api_key o la variable ODDS_API_KEY"}]
 
     tracked = []
-    for team_cfg in odds_cfg.get("teams", []):
-        tracked.extend(fetch_team_odds(odds_cfg, team_cfg, api_key))
+    # Iterar sobre competiciones (Champions League, Mundial, etc.)
+    for competition in odds_cfg.get("competitions", []):
+        competition_name = competition.get("name", "Desconocida")
+        # Iterar sobre equipos dentro de cada competición
+        for team_cfg in competition.get("teams", []):
+            matches = fetch_team_odds(odds_cfg, team_cfg, api_key)
+            # Agregar nombre de competencia a cada match
+            for match in matches:
+                match["competition"] = competition_name
+                match["sport_key"] = competition.get("sport_key", "")
+            tracked.extend(matches)
 
     if not tracked:
         return [{"error": "No encontré partidos con cuotas para los equipos configurados"}]
