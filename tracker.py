@@ -1190,106 +1190,191 @@ def post_discord_payload(config: dict, payload: dict) -> bool:
         log.error(f"Error enviando Discord: {e}")
     return False
 
+# ═══════════════════════════════════════════════════════════════════
+# REEMPLAZA estas funciones en tracker.py
+# Busca cada "def" y reemplaza el bloque completo
+# ═══════════════════════════════════════════════════════════════════
 
 def send_discord_alert(config: dict, alerts: list[dict]) -> bool:
-    """Envía alertas a un canal de Discord usando un webhook."""
+    """Envía alertas a Discord con diseño mejorado."""
     embeds = []
     for alert in alerts[:10]:
-        currency = alert["currency"]
-        fields = [
-            {"name": "Precio actual", "value": format_money(currency, alert["current"]) if alert.get("current") else "Sin precio", "inline": True},
-            {"name": "Referencia", "value": format_money(currency, alert["target"]) if currency else str(alert.get("target", "")), "inline": True},
-        ]
-        if alert.get("drop_pct"):
-            fields.append({"name": "Movimiento", "value": f"{alert['drop_pct']:.1f}%", "inline": True})
+        currency  = alert.get("currency", "")
+        reason    = alert.get("reason", "target")
+        current   = alert.get("current")
+        target    = alert.get("target")
+        drop_pct  = alert.get("drop_pct")
+
+        # Color e icono según motivo
+        if reason == "diagnostic":
+            color = 0xe74c3c   # rojo
+            icon  = "🔴"
+        elif reason == "target":
+            color = 0x2ecc71   # verde
+            icon  = "🎯"
+        elif reason in ("drop", "last_drop"):
+            color = 0x27ae60   # verde oscuro
+            icon  = "📉"
+        elif reason == "rise":
+            color = 0xe67e22   # naranja
+            icon  = "📈"
+        else:
+            color = 0x3498db
+            icon  = "💰"
+
+        fields = []
+
+        if current is not None:
+            fields.append({
+                "name": "💵 Precio actual",
+                "value": f"**{format_money(currency, current)}**",
+                "inline": True,
+            })
+        if target is not None:
+            fields.append({
+                "name": "🎯 Precio objetivo",
+                "value": format_money(currency, target),
+                "inline": True,
+            })
+        if drop_pct:
+            direction = "bajó" if drop_pct > 0 else "subió"
+            fields.append({
+                "name": "📊 Movimiento",
+                "value": f"{'🟢' if drop_pct > 0 else '🔴'} {abs(drop_pct):.1f}% {direction}",
+                "inline": True,
+            })
         if alert.get("message"):
-            fields.append({"name": "Detalle", "value": alert["message"][:1024], "inline": False})
+            fields.append({
+                "name": "📝 Detalle",
+                "value": alert["message"][:1024],
+                "inline": False,
+            })
+
         embeds.append({
-            "title": f"{alert_reason_label(alert.get('reason'))}: {alert['name']}",
-            "url": alert["url"],
-            "color": 0xe67e22 if alert.get("reason") == "diagnostic" else 0x2ecc71,
+            "title": f"{icon} {alert_reason_label(reason)}: {alert['name']}",
+            "url": alert.get("url", ""),
+            "color": color,
             "fields": fields,
+            "footer": {"text": "Price Tracker Bot"},
             "timestamp": datetime.now(UTC).isoformat().replace("+00:00", "Z"),
         })
 
     payload = {
-        "content": f"Detecté {len(alerts)} alerta(s) de precio.",
+        "content": f"🚨 **{len(alerts)} alerta{'s' if len(alerts) > 1 else ''} de precio** detectada{'s' if len(alerts) > 1 else ''}",
         "embeds": embeds,
     }
     return post_discord_payload(config, payload)
 
 
-def format_odds_lines(odds_results: list[dict]) -> list[str]:
-    lines = []
-    for item in odds_results[:8]:
-        if item.get("error"):
-            team = item.get("team", "Cuotas")
-            lines.append(f"- {team}: {item['error']}")
-            continue
-
-        match = f"{item['home_team']} vs {item['away_team']}"
-        when = format_match_time(item.get("commence_time", ""))
-        prices = []
-        for outcome in item.get("outcomes", [])[:3]:
-            prices.append(f"{outcome['name']} {outcome['price']} ({outcome['bookmaker']})")
-        odds_text = " | ".join(prices) if prices else "sin cuotas h2h"
-        lines.append(f"- {item['team']}: {match} | {when} | {odds_text}")
-
-    if not lines:
-        lines.append("- Cuotas: sin datos")
-
-    return lines
-
-
 def send_discord_summary(config: dict, results: list[dict], alerts: list[dict], odds_results: list[dict] | None = None) -> bool:
+    """Envía resumen periódico a Discord con diseño mejorado."""
     discord_cfg = config.get("discord", {})
     if not discord_cfg.get("notify_every_check"):
         return False
 
-    lines = [result_line(item) for item in results[:12]]
+    counts   = result_counts(results)
+    ok       = counts["ok"]
+    total    = len(results)
+    n_alerts = len(alerts)
+    now_str  = datetime.now(LOCAL_TZ).strftime("%H:%M")
 
-    if not lines:
-        lines.append("- No se pudo revisar ningún producto.")
+    # ── Líneas de productos ──────────────────────────────────────────
+    product_lines = []
+    for item in results[:12]:
+        name     = item.get("name", "?")
+        price    = item.get("price")
+        currency = item.get("currency", "")
+        state    = item.get("state", "missing")
 
-    counts = result_counts(results)
-    ok_count = counts["ok"]
-    missing_count = counts["missing"]
+        if price is not None:
+            icon = "✅"
+            val  = f"**{format_money(currency, price)}**"
+        elif state == "blocked":
+            icon = "🚫"
+            val  = "Bloqueado"
+        elif state == "timeout":
+            icon = "⏱️"
+            val  = "Timeout"
+        else:
+            icon = "⚠️"
+            val  = "Sin precio"
+
+        product_lines.append(f"{icon} **{name}** — {val}")
+
+    description = "\n".join(product_lines) if product_lines else "_Sin productos revisados_"
+
+    # ── Campos ──────────────────────────────────────────────────────
     fields = [
-        {"name": "Productos revisados", "value": str(len(results)), "inline": True},
-        {"name": "Precios detectados", "value": str(ok_count), "inline": True},
-        {"name": "Sin precio", "value": str(missing_count), "inline": True},
-        {"name": "Alertas", "value": str(len(alerts)), "inline": True},
-        {"name": "Bloqueados / timeout", "value": f"{counts['blocked']} / {counts['timeout']}", "inline": True},
+        {"name": "🛒 Revisados",  "value": str(total),    "inline": True},
+        {"name": "✅ Detectados", "value": str(ok),        "inline": True},
+        {"name": "⚠️ Sin precio", "value": str(counts["missing"]), "inline": True},
+        {"name": "🚨 Alertas",    "value": str(n_alerts),  "inline": True},
+        {"name": "🚫 Bloqueados", "value": str(counts["blocked"]), "inline": True},
+        {"name": "⏱️ Timeouts",   "value": str(counts["timeout"]), "inline": True},
     ]
 
+    # Problemas
     problems = problem_lines(results)
     if problems:
         fields.append({
-            "name": "Atencion",
-            "value": "\n".join(problems)[:1024],
+            "name": "🔧 Atención",
+            "value": "\n".join(f"• {p}" for p in problems)[:1024],
             "inline": False,
         })
 
+    # Cuotas deportivas
     if odds_results is not None:
+        odds_lines = format_odds_lines(odds_results)
         fields.append({
-            "name": "Cuotas Barca / Inter Miami",
-            "value": "\n".join(format_odds_lines(odds_results))[:1024],
+            "name": "⚽ Cuotas",
+            "value": "\n".join(odds_lines)[:1024],
             "inline": False,
         })
+
+    # Alertas activas resumidas
+    if alerts:
+        alert_lines = []
+        for a in alerts[:4]:
+            cur = format_money(a["currency"], a["current"]) if a.get("current") else "?"
+            alert_lines.append(f"• **{a['name']}** → {cur}")
+        fields.append({
+            "name": "🚨 Alertas activas",
+            "value": "\n".join(alert_lines)[:1024],
+            "inline": False,
+        })
+
+    # Color según estado
+    if n_alerts:
+        color = 0xe67e22   # naranja — hay alertas
+    elif ok == total:
+        color = 0x2ecc71   # verde — todo OK
+    elif ok == 0:
+        color = 0xe74c3c   # rojo — nada detectado
+    else:
+        color = 0x3498db   # azul — parcial
+
+    # Título del content
+    if n_alerts:
+        header = f"🚨 **{n_alerts} alerta{'s' if n_alerts > 1 else ''}** | {now_str} — {ok}/{total} precios detectados"
+    elif ok == total:
+        header = f"✅ Todo OK | {now_str} — {ok}/{total} precios detectados"
+    else:
+        header = f"📊 Revisión {now_str} — {ok}/{total} precios detectados"
 
     payload = {
-        "content": f"Price Tracker {datetime.now(LOCAL_TZ).strftime('%H:%M')}: {ok_count}/{len(results)} precios detectados, {len(alerts)} alerta(s).",
+        "content": header,
         "embeds": [{
-            "title": "Resumen del Price Tracker",
-            "description": "\n".join(lines),
-            "color": 0xf1c40f if alerts else 0x3498db,
+            "title": "📋 Resumen del Price Tracker",
+            "description": description,
+            "color": color,
             "fields": fields,
+            "footer": {
+                "text": f"Price Tracker Bot • próxima revisión en ~{config.get('bot', {}).get('interval_minutes', 60)} min",
+            },
             "timestamp": datetime.now(UTC).isoformat().replace("+00:00", "Z"),
         }],
     }
     return post_discord_payload(config, payload)
-
-
 # ─── WhatsApp ────────────────────────────────────────────────────────────────
 
 def build_plain_summary(results: list[dict], alerts: list[dict], odds_results: list[dict] | None = None) -> str:
