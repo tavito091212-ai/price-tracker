@@ -64,7 +64,8 @@ DATA_FILE   = Path(__file__).parent / "data" / "precios.json"
 LOG_FILE    = Path(__file__).parent / "logs" / "tracker.log"
 ENV_FILE    = Path(__file__).parent / ".env"
 STATUS_FILE = Path(__file__).parent / "data" / "status.json"
-DASHBOARD_FILE = Path(__file__).parent / "dashboard.html"
+DASHBOARD_FILE      = Path(__file__).parent / "dashboard.html"
+DOCS_DASHBOARD_FILE = Path(__file__).parent / "docs" / "index.html"
 LOCK_FILE = Path(__file__).parent / "data" / "tracker.lock"
 DAILY_REPORT_FILE = Path(__file__).parent / "data" / "daily_report.json"
 BACKUP_DIR = Path(__file__).parent / "data" / "backups"
@@ -590,6 +591,47 @@ def fetch_amadeus_flight_price(config: dict, product: dict) -> tuple[float | Non
     price = min(prices)
     log.info(f"  ✅ Amadeus precio mas bajo: {price:,.2f}")
     return price, "amadeus"
+
+
+
+def fetch_serpapi_flight_price(config: dict, product: dict) -> tuple[float | None, str]:
+    """Precio de vuelo via SerpAPI Google Flights — más fiable que scraping."""
+    serpapi_cfg = config.get("serpapi", {})
+    if not serpapi_cfg.get("enabled"):
+        return None, "api_missing"
+    api_key = get_config_secret(serpapi_cfg, "api_key", "api_key_env")
+    if not api_key:
+        return None, "api_missing"
+    route = product.get("flight") or parse_skyscanner_route(product.get("url", ""))
+    if not route:
+        return None, "api_error"
+    currency = product.get("currency", "COP")
+    params = urllib.parse.urlencode({
+        "engine": "google_flights",
+        "departure_id": route["origin"],
+        "arrival_id": route["destination"],
+        "outbound_date": route["departure_date"],
+        "adults": route.get("adults", "1"),
+        "currency": currency,
+        "hl": "es",
+        "api_key": api_key,
+    })
+    data, error = get_json(f"https://serpapi.com/search?{params}", timeout=30)
+    if error or not data:
+        log.warning(f"  SerpAPI error: {error}")
+        return None, "api_error"
+    prices = []
+    for section in ("best_flights", "other_flights"):
+        for flight in data.get(section) or []:
+            p = flight.get("price")
+            if isinstance(p, (int, float)) and p > 0:
+                prices.append(float(p))
+    if not prices:
+        log.warning("  SerpAPI: no encontró vuelos para esa ruta/fecha")
+        return None, "not_found"
+    best = min(prices)
+    log.info(f"  ✅ SerpAPI vuelo más barato: {currency} {best:,.0f}")
+    return best, "serpapi"
 
 
 def amazon_domain_id(url: str) -> int:
@@ -1807,7 +1849,7 @@ def render_dashboard(config: dict, history: dict, results: list[dict], alerts: l
         trend = stats.get("trend", "flat")
         trend_text = {"down": "Bajando", "up": "Subiendo", "flat": "Estable"}.get(trend, "Estable")
         cards.append(f"""
-        <article class="product-card {html.escape(state)}">
+        <article class="product-card {html.escape(state)}" data-state="{html.escape(state)}" data-name="{html.escape(name.lower())}">
           <div class="card-top">
             <span class="status">{html.escape(label)}</span>
             <span class="source">{html.escape(item.get("kind_label", ""))} · {html.escape(item.get("source", ""))}</span>
@@ -1822,7 +1864,8 @@ def render_dashboard(config: dict, history: dict, results: list[dict], alerts: l
             <span>Salud<br><strong>{html.escape(health_text)}</strong></span>
             <span>Exito 24<br><strong>{html.escape(success_text)}</strong></span>
           </div>
-          <p class="{spark_class}">{html.escape(spark_text)}</p>
+          <p class="{spark_class}" style="display:none">{html.escape(spark_text)}</p>
+          <canvas class="price-chart" data-prices="{html.escape(json.dumps(prices[-30:]))}" data-target="{html.escape(str(target or ''))}" data-currency="{html.escape(item.get('currency',''))}"></canvas>
           <p class="detail">{html.escape(detail)}</p>
           <a href="{html.escape(item.get("url", product.get("url", "")))}">Abrir fuente</a>
         </article>
@@ -1846,104 +1889,334 @@ def render_dashboard(config: dict, history: dict, results: list[dict], alerts: l
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="refresh" content="300">
   <title>Price Tracker Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
   <style>
     :root {{
       color-scheme: dark;
-      --bg: #101316;
-      --panel: #181d22;
-      --panel-2: #20262d;
-      --text: #f3f6f8;
-      --muted: #9ca8b3;
-      --ok: #2fbf71;
-      --warn: #f1b84b;
-      --bad: #ff6b6b;
-      --line: #2b333c;
+      --bg:      #0d1117;
+      --panel:   #161b22;
+      --panel-2: #1c2430;
+      --panel-3: #21262d;
+      --text:    #e6edf3;
+      --muted:   #7d8590;
+      --ok:      #3fb950;
+      --warn:    #d29922;
+      --bad:     #f85149;
+      --blue:    #58a6ff;
+      --line:    #30363d;
+      --radius:  10px;
     }}
-    * {{ box-sizing: border-box; }}
+    * {{ box-sizing: border-box; margin: 0; padding: 0; }}
     body {{
-      margin: 0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: var(--bg);
-      color: var(--text);
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg); color: var(--text); font-size: 14px; line-height: 1.5;
     }}
-    main {{ width: min(1180px, calc(100% - 32px)); margin: 0 auto; padding: 28px 0 40px; }}
-    header {{ display: flex; align-items: end; justify-content: space-between; gap: 20px; margin-bottom: 24px; }}
-    h1 {{ font-size: 32px; margin: 0 0 8px; letter-spacing: 0; }}
-    p {{ color: var(--muted); }}
-    .summary {{ display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; margin-bottom: 18px; }}
-    .metric, .side-panel, .product-card {{ background: var(--panel); border: 1px solid var(--line); border-radius: 8px; }}
-    .metric {{ padding: 16px; }}
-    .metric span {{ display: block; color: var(--muted); font-size: 13px; margin-bottom: 8px; }}
-    .metric strong {{ font-size: 26px; }}
-    .layout {{ display: grid; grid-template-columns: 1fr 330px; gap: 16px; align-items: start; }}
-    .grid {{ display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }}
-    .product-card {{ padding: 16px; min-height: 250px; }}
-    .card-top {{ display: flex; justify-content: space-between; gap: 10px; align-items: center; margin-bottom: 14px; }}
-    .status, .source {{ border: 1px solid var(--line); border-radius: 999px; padding: 5px 9px; font-size: 12px; color: var(--muted); }}
-    .ok .status {{ color: var(--ok); border-color: color-mix(in srgb, var(--ok) 50%, var(--line)); }}
-    .missing .status, .timeout .status {{ color: var(--warn); border-color: color-mix(in srgb, var(--warn) 50%, var(--line)); }}
-    .blocked .status, .error .status {{ color: var(--bad); border-color: color-mix(in srgb, var(--bad) 50%, var(--line)); }}
-    h2 {{ font-size: 17px; line-height: 1.35; min-height: 46px; margin: 0 0 12px; }}
-    .price {{ margin: 0 0 16px; font-size: 28px; color: var(--text); font-weight: 750; }}
-    .meta {{ display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-bottom: 14px; }}
-    .meta span {{ background: var(--panel-2); border-radius: 8px; padding: 10px; color: var(--muted); font-size: 12px; min-height: 58px; }}
-    .meta strong {{ color: var(--text); font-size: 13px; overflow-wrap: anywhere; }}
-    .spark {{ font-size: 28px; line-height: 1; letter-spacing: 0; color: #8fd3ff; margin: 4px 0 12px; }}
-    .spark.no-data {{ font-size: 14px; color: var(--muted); margin-top: 8px; }}
-    .detail {{ min-height: 34px; margin: 0 0 12px; }}
-    a {{ color: #8fd3ff; text-decoration: none; }}
-    .side-panel {{ padding: 16px; margin-bottom: 14px; }}
-    .side-panel h2 {{ min-height: auto; margin-bottom: 10px; }}
-    small {{ color: var(--muted); }}
-    ul {{ margin: 0; padding-left: 18px; color: var(--muted); }}
-    li {{ margin: 8px 0; }}
-    @media (max-width: 900px) {{
-      header {{ display: block; }}
-      .summary, .layout, .grid {{ grid-template-columns: 1fr; }}
-      h1 {{ font-size: 27px; }}
+    a {{ color: var(--blue); text-decoration: none; }}
+    a:hover {{ text-decoration: underline; }}
+
+    /* ── Layout ── */
+    .wrapper {{ width: min(1280px, calc(100% - 32px)); margin: 0 auto; padding: 32px 0 60px; }}
+
+    /* ── Header ── */
+    .header {{ display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 28px; flex-wrap: wrap; }}
+    .header h1 {{ font-size: 24px; font-weight: 700; display: flex; align-items: center; gap: 10px; }}
+    .header h1 span {{ font-size: 28px; }}
+    .header-meta {{ display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }}
+    .countdown {{ font-size: 13px; color: var(--muted); }}
+    .countdown b {{ color: var(--text); }}
+    .badge {{ display: inline-flex; align-items: center; gap: 5px; background: var(--panel-3);
+             border: 1px solid var(--line); border-radius: 99px; padding: 3px 10px; font-size: 12px; color: var(--muted); }}
+    .badge.alert {{ background: rgba(248,81,73,.12); border-color: rgba(248,81,73,.4); color: var(--bad); }}
+
+    /* ── Metrics row ── */
+    .metrics {{ display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 24px; }}
+    .metric {{ background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 18px; }}
+    .metric-label {{ font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin-bottom: 8px; }}
+    .metric-value {{ font-size: 32px; font-weight: 700; line-height: 1; }}
+    .metric-value.ok   {{ color: var(--ok); }}
+    .metric-value.warn {{ color: var(--warn); }}
+    .metric-value.bad  {{ color: var(--bad); }}
+    .metric-value.blue {{ color: var(--blue); }}
+
+    /* ── Filter bar ── */
+    .filter-bar {{ display: flex; gap: 8px; margin-bottom: 18px; flex-wrap: wrap; align-items: center; }}
+    .filter-btn {{ background: var(--panel); border: 1px solid var(--line); border-radius: 6px;
+                  padding: 5px 14px; font-size: 12px; color: var(--muted); cursor: pointer; transition: all .15s; }}
+    .filter-btn:hover, .filter-btn.active {{ background: var(--panel-3); border-color: var(--blue); color: var(--blue); }}
+    .search-input {{ background: var(--panel); border: 1px solid var(--line); border-radius: 6px;
+                    padding: 5px 12px; font-size: 13px; color: var(--text); outline: none; min-width: 180px; }}
+    .search-input:focus {{ border-color: var(--blue); }}
+    .filter-label {{ font-size: 12px; color: var(--muted); margin-left: auto; }}
+
+    /* ── Main layout ── */
+    .main-layout {{ display: grid; grid-template-columns: 1fr 320px; gap: 16px; align-items: start; }}
+
+    /* ── Product cards ── */
+    .cards-grid {{ display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }}
+    .product-card {{
+      background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
+      padding: 18px; display: flex; flex-direction: column; gap: 0;
+      transition: border-color .2s, transform .15s;
+    }}
+    .product-card:hover {{ border-color: #484f58; transform: translateY(-1px); }}
+    .product-card.ok     {{ border-left: 3px solid var(--ok); }}
+    .product-card.missing,
+    .product-card.timeout {{ border-left: 3px solid var(--warn); }}
+    .product-card.blocked,
+    .product-card.error   {{ border-left: 3px solid var(--bad); }}
+    .product-card.hidden  {{ display: none; }}
+
+    .card-header {{ display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; margin-bottom: 10px; }}
+    .card-title {{ font-size: 14px; font-weight: 600; line-height: 1.4; flex: 1; }}
+    .card-badges {{ display: flex; flex-direction: column; gap: 4px; align-items: flex-end; flex-shrink: 0; }}
+    .tag {{ display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 99px;
+           border: 1px solid var(--line); color: var(--muted); white-space: nowrap; }}
+    .tag.ok      {{ color: var(--ok);   border-color: rgba(63,185,80,.35);  background: rgba(63,185,80,.08); }}
+    .tag.warn    {{ color: var(--warn); border-color: rgba(210,153,34,.35); background: rgba(210,153,34,.08); }}
+    .tag.bad     {{ color: var(--bad);  border-color: rgba(248,81,73,.35);  background: rgba(248,81,73,.08); }}
+
+    .card-price {{ font-size: 26px; font-weight: 700; margin: 6px 0 4px; }}
+    .card-price.no-price {{ font-size: 16px; color: var(--muted); }}
+    .price-target {{ font-size: 12px; color: var(--muted); margin-bottom: 10px; }}
+    .price-target .hit {{ color: var(--ok); font-weight: 600; }}
+
+    /* Progress bar price vs target */
+    .progress-wrap {{ margin-bottom: 12px; }}
+    .progress-label {{ display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); margin-bottom: 4px; }}
+    .progress-bar {{ height: 4px; background: var(--panel-3); border-radius: 99px; overflow: hidden; }}
+    .progress-fill {{ height: 100%; border-radius: 99px; transition: width .4s ease; }}
+    .progress-fill.ok   {{ background: var(--ok); }}
+    .progress-fill.near {{ background: var(--warn); }}
+    .progress-fill.over {{ background: var(--bad); }}
+
+    /* Chart */
+    .price-chart {{ width: 100% !important; height: 80px !important; margin-bottom: 10px; }}
+
+    /* Stats grid */
+    .card-stats {{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 12px; }}
+    .stat {{ background: var(--panel-2); border-radius: 6px; padding: 8px 10px; }}
+    .stat-label {{ font-size: 10px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); margin-bottom: 2px; }}
+    .stat-value {{ font-size: 12px; font-weight: 600; }}
+
+    .card-footer {{ display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 10px;
+                   border-top: 1px solid var(--line); font-size: 11px; color: var(--muted); }}
+    .source-pill {{ background: var(--panel-3); border-radius: 4px; padding: 2px 7px; font-family: monospace; }}
+
+    /* ── Sidebar ── */
+    .sidebar {{ display: flex; flex-direction: column; gap: 14px; }}
+    .side-card {{ background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; }}
+    .side-card h3 {{ font-size: 13px; font-weight: 600; color: var(--muted); text-transform: uppercase;
+                    letter-spacing: .06em; margin-bottom: 12px; }}
+    .side-list {{ list-style: none; display: flex; flex-direction: column; gap: 10px; }}
+    .side-list li {{ border-bottom: 1px solid var(--line); padding-bottom: 10px; font-size: 13px; }}
+    .side-list li:last-child {{ border-bottom: none; padding-bottom: 0; }}
+    .side-list .li-name {{ font-weight: 500; }}
+    .side-list .li-sub {{ font-size: 11px; color: var(--muted); margin-top: 2px; }}
+    .empty-state {{ color: var(--muted); font-size: 13px; }}
+
+    /* ── Odds ── */
+    .odds-item {{ font-size: 12px; border-bottom: 1px solid var(--line); padding: 8px 0; }}
+    .odds-item:last-child {{ border-bottom: none; padding-bottom: 0; }}
+    .odds-match {{ font-weight: 500; margin-bottom: 3px; }}
+    .odds-prices {{ display: flex; gap: 6px; flex-wrap: wrap; }}
+    .odds-chip {{ background: var(--panel-3); border-radius: 4px; padding: 2px 7px; font-size: 11px;
+                 border: 1px solid var(--line); }}
+    .odds-chip.home {{ border-color: rgba(63,185,80,.4); color: var(--ok); }}
+    .odds-chip.draw {{ border-color: var(--line); }}
+    .odds-chip.away {{ border-color: rgba(88,166,255,.4); color: var(--blue); }}
+
+    /* ── Responsive ── */
+    @media (max-width: 960px) {{
+      .main-layout, .cards-grid {{ grid-template-columns: 1fr; }}
+      .metrics {{ grid-template-columns: repeat(3, 1fr); }}
+    }}
+    @media (max-width: 600px) {{
+      .metrics {{ grid-template-columns: repeat(2, 1fr); }}
+      .card-stats {{ grid-template-columns: repeat(2, 1fr); }}
+      .filter-bar {{ gap: 6px; }}
     }}
   </style>
+
 </head>
 <body>
-  <main>
-    <header>
-      <div>
-        <h1>Price Tracker</h1>
-        <p>Ultima revision: {html.escape(generated_at)} · proxima aprox: {html.escape(next_check)}</p>
+  <div class="wrapper">
+    <header class="header">
+      <h1><span>📊</span> Price Tracker</h1>
+      <div class="header-meta">
+        <div class="countdown">
+          Última revisión: <b>{html.escape(generated_at)}</b> &nbsp;·&nbsp;
+          Próxima: <b id="cdtarget" style="display:none">{html.escape(next_check)}</b>
+          <span id="cdlive"></span>
+        </div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;margin-top:4px">
+          <span class="badge">{html.escape(channel_text or "Sin canales")}</span>
+          {'<span class="badge alert">🚨 ' + str(len(alerts)) + ' alerta(s)</span>' if alerts else ''}
+        </div>
       </div>
-      <p>{html.escape(channel_text or "Canales sin activar")}</p>
     </header>
-    <section class="summary">
-      <div class="metric"><span>Productos</span><strong>{len(results)}</strong></div>
-      <div class="metric"><span>Detectados</span><strong>{ok_count}</strong></div>
-      <div class="metric"><span>Alertas</span><strong>{len(alerts)}</strong></div>
-      <div class="metric"><span>Problemas</span><strong>{len(problems)}</strong></div>
-      <div class="metric"><span>Intervalo</span><strong>{html.escape(str(interval))}m</strong></div>
-    </section>
-    <section class="layout">
-      <div class="grid">
+
+    <div class="metrics">
+      <div class="metric">
+        <div class="metric-label">Productos</div>
+        <div class="metric-value blue">{len(results)}</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Detectados</div>
+        <div class="metric-value ok">{ok_count}</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Sin precio</div>
+        <div class="metric-value {'warn' if len(results)-ok_count > 0 else 'ok'}">{len(results)-ok_count}</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Alertas</div>
+        <div class="metric-value {'bad' if alerts else 'ok'}">{len(alerts)}</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Intervalo</div>
+        <div class="metric-value blue">{html.escape(str(interval))}m</div>
+      </div>
+    </div>
+
+    <div class="filter-bar">
+      <input class="search-input" type="text" id="search" placeholder="🔍  Buscar producto..." oninput="applyFilters()">
+      <button class="filter-btn active" data-f="all" onclick="setFilter(this)">Todos</button>
+      <button class="filter-btn" data-f="ok" onclick="setFilter(this)">✅ Con precio</button>
+      <button class="filter-btn" data-f="missing" onclick="setFilter(this)">⚠️ Sin precio</button>
+      <span class="filter-label" id="filter-count"></span>
+    </div>
+
+    <div class="main-layout">
+      <div class="cards-grid" id="cards-grid">
         {''.join(cards)}
       </div>
-      <aside>
-        <section class="side-panel">
-          <h2>Alertas</h2>
-          <ul>{alert_html}</ul>
-        </section>
-        <section class="side-panel">
-          <h2>Atencion</h2>
-          <ul>{problem_html}</ul>
-        </section>
-        <section class="side-panel">
-          <h2>Cuotas</h2>
-          <ul>{odds_html}</ul>
-        </section>
+      <aside class="sidebar">
+        <div class="side-card">
+          <h3>🚨 Alertas activas</h3>
+          {'<ul class="side-list">' + alert_html + '</ul>' if alerts else '<p class="empty-state">Sin alertas activas ✅</p>'}
+        </div>
+        <div class="side-card">
+          <h3>⚠️ Atención</h3>
+          {'<ul class="side-list">' + problem_html + '</ul>' if problems else '<p class="empty-state">Sin problemas 🎉</p>'}
+        </div>
+        <div class="side-card">
+          <h3>⚽ Cuotas deportivas</h3>
+          <div>{odds_html}</div>
+        </div>
       </aside>
-    </section>
-  </main>
+    </div>
+  </div>
+
+  <script>
+    // ── Countdown to next check ────────────────────────────────────
+    (function() {{
+      const t = document.getElementById("cdtarget");
+      const live = document.getElementById("cdlive");
+      if (!t) return;
+      const nextStr = t.textContent.trim();
+      if (!nextStr.includes(":")) {{ live.textContent = nextStr; return; }}
+      const [h, m] = nextStr.split(":").map(Number);
+      const now = new Date();
+      let target = new Date(now);
+      target.setHours(h, m, 0, 0);
+      if (target <= now) target.setDate(target.getDate() + 1);
+      function tick() {{
+        const diff = Math.max(0, target - new Date());
+        const mm = String(Math.floor(diff / 60000)).padStart(2, "0");
+        const ss = String(Math.floor((diff % 60000) / 1000)).padStart(2, "0");
+        live.textContent = nextStr + " (" + mm + ":" + ss + " restantes)";
+      }}
+      tick(); setInterval(tick, 1000);
+    }})();
+
+    // ── Price history charts (Chart.js) ───────────────────────────
+    document.querySelectorAll(".price-chart").forEach(function(canvas) {{
+      var raw = canvas.dataset.prices;
+      var targetVal = parseFloat(canvas.dataset.target) || null;
+      var currency = canvas.dataset.currency || "";
+      var prices;
+      try {{ prices = JSON.parse(raw || "[]"); }} catch(e) {{ prices = []; }}
+      if (!prices.length) {{ canvas.style.display = "none"; return; }}
+      var labels = prices.map(function(_, i) {{
+        return i === prices.length - 1 ? "Ahora" : ("-" + (prices.length - 1 - i) + "h");
+      }});
+      var datasets = [{{
+        data: prices,
+        borderColor: "#58a6ff",
+        backgroundColor: "rgba(88,166,255,0.08)",
+        borderWidth: 1.5,
+        pointRadius: prices.map(function(_, i) {{ return i === prices.length - 1 ? 4 : 0; }}),
+        pointBackgroundColor: "#58a6ff",
+        fill: true, tension: 0.3,
+      }}];
+      if (targetVal) {{
+        datasets.push({{
+          data: prices.map(function() {{ return targetVal; }}),
+          borderColor: "rgba(63,185,80,0.6)",
+          borderWidth: 1,
+          borderDash: [4,3],
+          pointRadius: 0, fill: false,
+        }});
+      }}
+      new Chart(canvas, {{
+        type: "line",
+        data: {{ labels: labels, datasets: datasets }},
+        options: {{
+          responsive: true, maintainAspectRatio: false, animation: false,
+          plugins: {{
+            legend: {{ display: false }},
+            tooltip: {{
+              callbacks: {{
+                label: function(ctx) {{
+                  return currency + " " + ctx.parsed.y.toLocaleString("es-CO");
+                }}
+              }}
+            }}
+          }},
+          scales: {{
+            x: {{ display: false }},
+            y: {{ display: false, grace: "10%" }},
+          }},
+        }},
+      }});
+    }});
+
+    // ── Filter & search ───────────────────────────────────────────
+    var activeFilter = "all";
+    function setFilter(btn) {{
+      activeFilter = btn.dataset.f;
+      document.querySelectorAll(".filter-btn").forEach(function(b) {{ b.classList.remove("active"); }});
+      btn.classList.add("active");
+      applyFilters();
+    }}
+    function applyFilters() {{
+      var q = (document.getElementById("search").value || "").toLowerCase();
+      var visible = 0;
+      document.querySelectorAll(".product-card").forEach(function(card) {{
+        var state = card.dataset.state || "";
+        var name = (card.dataset.name || "").toLowerCase();
+        var stateOk = activeFilter === "all"
+          || (activeFilter === "ok" && state === "ok")
+          || (activeFilter === "missing" && state !== "ok");
+        var textOk = !q || name.indexOf(q) !== -1;
+        var show = stateOk && textOk;
+        card.classList.toggle("hidden", !show);
+        if (show) visible++;
+      }});
+      var el = document.getElementById("filter-count");
+      if (el) el.textContent = visible + " producto" + (visible !== 1 ? "s" : "");
+    }}
+    applyFilters();
+  </script>
 </body>
 </html>
 """
     with open(DASHBOARD_FILE, "w", encoding="utf-8") as f:
+        f.write(html_doc)
+    DOCS_DASHBOARD_FILE.parent.mkdir(parents=True, exist_ok=True)
+    with open(DOCS_DASHBOARD_FILE, "w", encoding="utf-8") as f:
         f.write(html_doc)
 
 
@@ -2010,7 +2283,9 @@ def run_check():
                 elif kind == "flight":
                     price, source = fetch_amadeus_flight_price(config, product)
                     if price is None and source == "api_missing":
-                        log.info("  Amadeus no configurado; usando Skyscanner como respaldo")
+                        price, source = fetch_serpapi_flight_price(config, product)
+                    if price is None:
+                        log.info("  APIs de vuelo no disponibles; usando Skyscanner como respaldo")
                         price, source = scrape_price(url, pw, cur)
                 else:
                     price, source = scrape_price(url, pw, cur)

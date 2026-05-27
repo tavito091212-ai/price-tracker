@@ -66,13 +66,24 @@
     "teams": [
       {
         "name": "Barcelona",
-        "aliases": ["Barcelona", "FC Barcelona"],
-        "sports": ["soccer_spain_la_liga", "soccer_uefa_champs_league"]
+        "aliases": [
+          "Barcelona",
+          "FC Barcelona"
+        ],
+        "sports": [
+          "soccer_spain_la_liga",
+          "soccer_uefa_champs_league"
+        ]
       },
       {
         "name": "Inter Miami",
-        "aliases": ["Inter Miami", "Inter Miami CF"],
-        "sports": ["soccer_usa_mls"]
+        "aliases": [
+          "Inter Miami",
+          "Inter Miami CF"
+        ],
+        "sports": [
+          "soccer_usa_mls"
+        ]
       }
     ]
   },
@@ -80,7 +91,7 @@
     "enabled": true,
     "api_key": "",
     "api_key_env": "SERPAPI_KEY",
-    "note": "Google Flights via SerpAPI. 100 búsquedas gratis/mes. Regístrate en https://serpapi.com"
+    "note": "Google Flights vía SerpAPI. 100 búsquedas gratis/mes. Regístrate en https://serpapi.com"
   },
   "providers": {
     "keepa": {
