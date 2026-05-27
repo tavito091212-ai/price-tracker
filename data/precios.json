@@ -8,6 +8,11 @@
         "price": 5999.0,
         "date": "2026-05-27 00:08",
         "source": ".game_purchase_price.price"
+      },
+      {
+        "price": 5999.0,
+        "date": "2026-05-27 02:11",
+        "source": ".game_purchase_price.price"
       }
     ]
   },
@@ -19,6 +24,11 @@
       {
         "price": 49.99,
         "date": "2026-05-27 00:08",
+        "source": "span.a-price.aok-align-center .a-offscreen"
+      },
+      {
+        "price": 49.99,
+        "date": "2026-05-27 02:11",
         "source": "span.a-price.aok-align-center .a-offscreen"
       }
     ]

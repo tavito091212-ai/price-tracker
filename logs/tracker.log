@@ -31,3 +31,35 @@
 2026-05-27 00:08:56,843  WARNING  ntfy está activado, pero falta ntfy.topic en config.json
 2026-05-27 00:08:57,051  INFO  Mensaje enviado a Discord
 2026-05-27 00:08:57,051  WARNING  ntfy está activado, pero falta ntfy.topic en config.json
+2026-05-27 02:11:40,087  INFO  
+──────────────────────────────────────────────────
+2026-05-27 02:11:40,087  INFO  ▶ Revisando 4 producto(s) — 2026-05-27 02:11
+2026-05-27 02:11:40,087  INFO  ──────────────────────────────────────────────────
+2026-05-27 02:11:40,267  INFO  
+🔍 Red Dead Redemption 2 - Steam
+2026-05-27 02:11:44,489  INFO    ✅ Steam precio [.game_purchase_price.price]: $59.99 → 5,999.00
+2026-05-27 02:11:44,522  INFO    Actual: COP 5,999  |  Min: 5,999  |  Max: 5,999  |  Prom: 5,999
+2026-05-27 02:11:44,522  INFO    Alerta repetida omitida por cooldown
+2026-05-27 02:11:44,522  INFO  
+🔍 Amazon Echo Dot 5ta Gen
+2026-05-27 02:11:44,522  INFO    Keepa no configurado; usando scraping Amazon como respaldo
+2026-05-27 02:11:51,759  INFO    ✅ Amazon precio [span.a-price.aok-align-center .a-offscreen]: $49.99 → 49.99
+2026-05-27 02:11:51,798  INFO    Actual: USD 50  |  Min: 50  |  Max: 50  |  Prom: 50
+2026-05-27 02:11:51,798  INFO  
+🔍 Vuelo Bogotá → Miami (Jun-Jul)
+2026-05-27 02:11:51,954  WARNING    SerpAPI error: HTTP 401 {
+  "error": "Invalid API key. Your API key should be here: https://serpapi.com/manage-api-key"
+}
+2026-05-27 02:11:51,954  INFO    APIs de vuelo no disponibles; usando Skyscanner como respaldo
+2026-05-27 02:11:52,736  INFO    Esperando que carguen los vuelos (8s)...
+2026-05-27 02:12:10,756  WARNING    ❌ Skyscanner bloqueó el bot — prueba manualmente en el link
+2026-05-27 02:12:10,784  WARNING    Saltando — no se obtuvo precio
+2026-05-27 02:12:10,785  INFO  
+🔍 Vuelo Bucaramanga → Miami (Jun-Jul)
+2026-05-27 02:12:10,833  WARNING    SerpAPI error: HTTP 401 {
+  "error": "Invalid API key. Your API key should be here: https://serpapi.com/manage-api-key"
+}
+2026-05-27 02:12:10,833  INFO    APIs de vuelo no disponibles; usando Skyscanner como respaldo
+2026-05-27 02:12:11,183  INFO    Esperando que carguen los vuelos (8s)...
+2026-05-27 02:12:29,202  WARNING    ❌ Skyscanner bloqueó el bot — prueba manualmente en el link
+2026-05-27 02:12:29,226  WARNING    Saltando — no se obtuvo precio

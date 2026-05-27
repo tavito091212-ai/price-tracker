@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-26T19:08:56-05:00",
+  "generated_at": "2026-05-26T21:12:29-05:00",
   "products": [
     {
       "id": "rdr2_steam",
@@ -9,7 +9,7 @@
       "target": 30000.0,
       "price": 5999.0,
       "source": ".game_purchase_price.price",
-      "checked_at": "2026-05-26T19:08:06-05:00",
+      "checked_at": "2026-05-26T21:11:40-05:00",
       "state": "ok",
       "state_label": "OK",
       "state_detail": "Precio detectado",
@@ -19,23 +19,23 @@
         "max": 5999.0,
         "avg": 5999.0,
         "avg_7": 5999.0,
-        "count": 1,
+        "count": 2,
         "previous": 5999.0,
         "change_pct": 0.0,
         "is_historical_low": false,
-        "last_seen": "2026-05-27 00:08",
+        "last_seen": "2026-05-27 02:11",
         "trend": "flat"
       },
       "kind": "game",
       "kind_label": "Juego",
       "health": {
-        "checks": 0,
-        "detected": 0,
+        "checks": 1,
+        "detected": 1,
         "missed": 0,
-        "success_rate": null,
-        "last_seen": null,
-        "last_state": "pending",
-        "last_source": "pending"
+        "success_rate": 1.0,
+        "last_seen": "2026-05-26T19:08:06-05:00",
+        "last_state": "ok",
+        "last_source": ".game_purchase_price.price"
       }
     },
     {
@@ -46,7 +46,7 @@
       "target": 35,
       "price": 49.99,
       "source": "span.a-price.aok-align-center .a-offscreen",
-      "checked_at": "2026-05-26T19:08:06-05:00",
+      "checked_at": "2026-05-26T21:11:40-05:00",
       "state": "ok",
       "state_label": "OK",
       "state_detail": "Precio detectado",
@@ -56,23 +56,23 @@
         "max": 49.99,
         "avg": 49.99,
         "avg_7": 49.99,
-        "count": 1,
+        "count": 2,
         "previous": 49.99,
         "change_pct": 0.0,
         "is_historical_low": false,
-        "last_seen": "2026-05-27 00:08",
+        "last_seen": "2026-05-27 02:11",
         "trend": "flat"
       },
       "kind": "amazon",
       "kind_label": "Amazon",
       "health": {
-        "checks": 0,
-        "detected": 0,
+        "checks": 1,
+        "detected": 1,
         "missed": 0,
-        "success_rate": null,
-        "last_seen": null,
-        "last_state": "pending",
-        "last_source": "pending"
+        "success_rate": 1.0,
+        "last_seen": "2026-05-26T19:08:06-05:00",
+        "last_state": "ok",
+        "last_source": "span.a-price.aok-align-center .a-offscreen"
       }
     },
     {
@@ -83,20 +83,20 @@
       "target": 1500000,
       "price": null,
       "source": "not_found",
-      "checked_at": "2026-05-26T19:08:06-05:00",
+      "checked_at": "2026-05-26T21:11:40-05:00",
       "state": "missing",
       "state_label": "Sin precio",
       "state_detail": "No se encontro precio usable",
       "kind": "flight",
       "kind_label": "Vuelo",
       "health": {
-        "checks": 0,
+        "checks": 1,
         "detected": 0,
-        "missed": 0,
-        "success_rate": null,
+        "missed": 1,
+        "success_rate": 0.0,
         "last_seen": null,
-        "last_state": "pending",
-        "last_source": "pending"
+        "last_state": "missing",
+        "last_source": "not_found"
       },
       "stats": {}
     },
@@ -108,36 +108,25 @@
       "target": 1800000,
       "price": null,
       "source": "not_found",
-      "checked_at": "2026-05-26T19:08:06-05:00",
+      "checked_at": "2026-05-26T21:11:40-05:00",
       "state": "missing",
       "state_label": "Sin precio",
       "state_detail": "No se encontro precio usable",
       "kind": "flight",
       "kind_label": "Vuelo",
       "health": {
-        "checks": 0,
+        "checks": 1,
         "detected": 0,
-        "missed": 0,
-        "success_rate": null,
+        "missed": 1,
+        "success_rate": 0.0,
         "last_seen": null,
-        "last_state": "pending",
-        "last_source": "pending"
+        "last_state": "missing",
+        "last_source": "not_found"
       },
       "stats": {}
     }
   ],
-  "alerts": [
-    {
-      "name": "Red Dead Redemption 2 - Steam",
-      "url": "https://store.steampowered.com/app/1174180/Red_Dead_Redemption_2/",
-      "current": 5999.0,
-      "target": 30000.0,
-      "currency": "COP",
-      "drop_pct": 0.0,
-      "id": "rdr2_steam",
-      "reason": "target"
-    }
-  ],
+  "alerts": [],
   "odds": [
     {
       "error": "Falta odds.api_key o la variable ODDS_API_KEY"
@@ -153,6 +142,11 @@
           "price": 5999.0,
           "date": "2026-05-27 00:08",
           "source": ".game_purchase_price.price"
+        },
+        {
+          "price": 5999.0,
+          "date": "2026-05-27 02:11",
+          "source": ".game_purchase_price.price"
         }
       ]
     },
@@ -164,6 +158,11 @@
         {
           "price": 49.99,
           "date": "2026-05-27 00:08",
+          "source": "span.a-price.aok-align-center .a-offscreen"
+        },
+        {
+          "price": 49.99,
+          "date": "2026-05-27 02:11",
           "source": "span.a-price.aok-align-center .a-offscreen"
         }
       ]
@@ -185,7 +184,7 @@
     "daily_report_enabled": true,
     "diagnostics_enabled": true,
     "backup_enabled": true,
-    "last_backup_marker": ""
+    "last_backup_marker": "/home/runner/work/price-tracker/price-tracker/data/backups/2026-05-26.marker"
   },
   "channels": {
     "discord": true,
