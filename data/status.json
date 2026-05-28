@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-28T06:07:19-05:00",
+  "generated_at": "2026-05-28T14:59:49-05:00",
   "products": [
     {
       "id": "vuelo_bog_mia",
@@ -9,17 +9,17 @@
       "target": 1500000,
       "price": null,
       "source": "not_found",
-      "checked_at": "2026-05-28T06:07:02-05:00",
+      "checked_at": "2026-05-28T14:59:33-05:00",
       "state": "missing",
       "state_label": "Sin precio",
       "state_detail": "No se encontro precio usable",
       "kind": "flight",
       "kind_label": "Vuelo",
       "health": {
-        "checks": 7,
+        "checks": 8,
         "detected": 1,
-        "missed": 6,
-        "success_rate": 0.14285714285714285,
+        "missed": 7,
+        "success_rate": 0.125,
         "last_seen": "2026-05-26T21:24:23-05:00",
         "last_state": "missing",
         "last_source": "not_found"
@@ -46,17 +46,17 @@
       "target": 1800000,
       "price": null,
       "source": "not_found",
-      "checked_at": "2026-05-28T06:07:02-05:00",
+      "checked_at": "2026-05-28T14:59:33-05:00",
       "state": "missing",
       "state_label": "Sin precio",
       "state_detail": "No se encontro precio usable",
       "kind": "flight",
       "kind_label": "Vuelo",
       "health": {
-        "checks": 7,
+        "checks": 8,
         "detected": 1,
-        "missed": 6,
-        "success_rate": 0.14285714285714285,
+        "missed": 7,
+        "success_rate": 0.125,
         "last_seen": "2026-05-26T21:24:23-05:00",
         "last_state": "missing",
         "last_source": "not_found"
@@ -83,16 +83,16 @@
       "target": null,
       "price": null,
       "source": "not_found",
-      "checked_at": "2026-05-28T06:07:02-05:00",
+      "checked_at": "2026-05-28T14:59:33-05:00",
       "state": "missing",
       "state_label": "Sin precio",
       "state_detail": "No se encontro precio usable",
       "kind": "gamepass",
       "kind_label": "Gamepass",
       "health": {
-        "checks": 3,
+        "checks": 4,
         "detected": 0,
-        "missed": 3,
+        "missed": 4,
         "success_rate": 0.0,
         "last_seen": null,
         "last_state": "missing",
@@ -204,7 +204,7 @@
     "daily_report_enabled": true,
     "diagnostics_enabled": true,
     "backup_enabled": true,
-    "last_backup_marker": "/home/runner/work/price-tracker/price-tracker/data/backups/2026-05-27.marker"
+    "last_backup_marker": "/home/runner/work/price-tracker/price-tracker/data/backups/2026-05-28.marker"
   },
   "channels": {
     "discord": true,
