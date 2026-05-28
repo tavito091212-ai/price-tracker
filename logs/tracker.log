@@ -207,3 +207,29 @@
 2026-05-27 21:03:26,429  INFO  Mensaje enviado a ntfy
 2026-05-27 21:03:26,617  INFO  Mensaje enviado a Discord
 2026-05-27 21:03:26,702  INFO  Mensaje enviado a ntfy
+2026-05-28 11:07:02,702  INFO  
+──────────────────────────────────────────────────
+2026-05-28 11:07:02,702  INFO  ▶ Revisando 3 producto(s) — 2026-05-28 11:07
+2026-05-28 11:07:02,702  INFO  ──────────────────────────────────────────────────
+2026-05-28 11:07:02,922  INFO  
+🔍 ✈️ Vuelo Bogotá → Miami
+2026-05-28 11:07:02,922  INFO    APIs de vuelo no disponibles; usando Skyscanner como respaldo
+2026-05-28 11:07:03,284  INFO    Abriendo: https://www.google.com/flights?hl=es#search;f=BOG;t=MIA;d=20...
+2026-05-28 11:07:07,580  WARNING    ❌ No se pudo extraer el precio
+2026-05-28 11:07:07,610  WARNING    Saltando — no se obtuvo precio
+2026-05-28 11:07:07,611  INFO  
+🔍 ✈️ Vuelo Bucaramanga → Miami
+2026-05-28 11:07:07,611  INFO    APIs de vuelo no disponibles; usando Skyscanner como respaldo
+2026-05-28 11:07:07,769  INFO    Abriendo: https://www.google.com/flights?hl=es#search;f=BGA;t=MIA;d=20...
+2026-05-28 11:07:12,250  WARNING    ❌ No se pudo extraer el precio
+2026-05-28 11:07:12,281  WARNING    Saltando — no se obtuvo precio
+2026-05-28 11:07:12,282  INFO  
+🔍 🎮 Próximos juegos Game Pass
+2026-05-28 11:07:12,448  INFO    Abriendo: https://www.xbox.com/en-US/xbox-game-pass/games...
+2026-05-28 11:07:19,395  WARNING    ❌ No se pudo extraer el precio
+2026-05-28 11:07:19,455  WARNING    Saltando — no se obtuvo precio
+2026-05-28 11:07:19,471  INFO  
+✅ Revisión completa — 0 alerta(s)
+
+2026-05-28 11:07:19,734  INFO  Mensaje enviado a Discord
+2026-05-28 11:07:20,000  INFO  Mensaje enviado a ntfy
