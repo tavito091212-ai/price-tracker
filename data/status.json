@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-29T07:35:28-05:00",
+  "generated_at": "2026-05-29T16:16:02-05:00",
   "products": [
     {
       "id": "vuelo_bog_mia",
@@ -9,17 +9,17 @@
       "target": 1500000,
       "price": null,
       "source": "not_found",
-      "checked_at": "2026-05-29T07:35:10-05:00",
+      "checked_at": "2026-05-29T16:15:45-05:00",
       "state": "missing",
       "state_label": "Sin precio",
       "state_detail": "No se encontro precio usable",
       "kind": "flight",
       "kind_label": "Vuelo",
       "health": {
-        "checks": 10,
+        "checks": 11,
         "detected": 1,
-        "missed": 9,
-        "success_rate": 0.1,
+        "missed": 10,
+        "success_rate": 0.09090909090909091,
         "last_seen": "2026-05-26T21:24:23-05:00",
         "last_state": "missing",
         "last_source": "not_found"
@@ -46,17 +46,17 @@
       "target": 1800000,
       "price": null,
       "source": "not_found",
-      "checked_at": "2026-05-29T07:35:10-05:00",
+      "checked_at": "2026-05-29T16:15:45-05:00",
       "state": "missing",
       "state_label": "Sin precio",
       "state_detail": "No se encontro precio usable",
       "kind": "flight",
       "kind_label": "Vuelo",
       "health": {
-        "checks": 10,
+        "checks": 11,
         "detected": 1,
-        "missed": 9,
-        "success_rate": 0.1,
+        "missed": 10,
+        "success_rate": 0.09090909090909091,
         "last_seen": "2026-05-26T21:24:23-05:00",
         "last_state": "missing",
         "last_source": "not_found"
@@ -83,16 +83,16 @@
       "target": null,
       "price": null,
       "source": "not_found",
-      "checked_at": "2026-05-29T07:35:10-05:00",
+      "checked_at": "2026-05-29T16:15:45-05:00",
       "state": "missing",
       "state_label": "Sin precio",
       "state_detail": "No se encontro precio usable",
       "kind": "gamepass",
       "kind_label": "Gamepass",
       "health": {
-        "checks": 6,
+        "checks": 7,
         "detected": 0,
-        "missed": 6,
+        "missed": 7,
         "success_rate": 0.0,
         "last_seen": null,
         "last_state": "missing",
@@ -101,19 +101,7 @@
       "stats": {}
     }
   ],
-  "alerts": [
-    {
-      "id": "gamepass_upcoming",
-      "name": "🎮 Próximos juegos Game Pass",
-      "url": "https://www.xbox.com/en-US/xbox-game-pass/games",
-      "current": 0,
-      "target": 6,
-      "currency": "N/A",
-      "drop_pct": 0,
-      "reason": "diagnostic",
-      "message": "Lleva 6 revisiones recientes sin precio detectable."
-    }
-  ],
+  "alerts": [],
   "odds": [
     {
       "error": "No encontré partidos con cuotas para los equipos configurados"
@@ -216,7 +204,7 @@
     "daily_report_enabled": true,
     "diagnostics_enabled": true,
     "backup_enabled": true,
-    "last_backup_marker": "/home/runner/work/price-tracker/price-tracker/data/backups/2026-05-28.marker"
+    "last_backup_marker": "/home/runner/work/price-tracker/price-tracker/data/backups/2026-05-29.marker"
   },
   "channels": {
     "discord": true,

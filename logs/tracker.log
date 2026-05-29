@@ -314,3 +314,31 @@
 2026-05-29 12:35:29,009  ERROR  Error enviando Discord: HTTP 404 {"message": "Unknown Webhook", "code": 10015}
 2026-05-29 12:35:29,234  ERROR  Error enviando Discord: HTTP 404 {"message": "Unknown Webhook", "code": 10015}
 2026-05-29 12:35:29,540  INFO  Mensaje enviado a ntfy
+2026-05-29 21:15:45,407  INFO  
+──────────────────────────────────────────────────
+2026-05-29 21:15:45,407  INFO  ▶ Revisando 3 producto(s) — 2026-05-29 21:15
+2026-05-29 21:15:45,407  INFO  ──────────────────────────────────────────────────
+2026-05-29 21:15:45,623  INFO  
+🔍 ✈️ Vuelo Bogotá → Miami
+2026-05-29 21:15:45,624  INFO    APIs de vuelo no disponibles; usando Skyscanner como respaldo
+2026-05-29 21:15:46,448  INFO    Abriendo: https://www.google.com/flights?hl=es#search;f=BOG;t=MIA;d=20...
+2026-05-29 21:15:50,854  WARNING    ❌ No se pudo extraer el precio
+2026-05-29 21:15:50,886  WARNING    Saltando — no se obtuvo precio
+2026-05-29 21:15:50,887  INFO  
+🔍 ✈️ Vuelo Bucaramanga → Miami
+2026-05-29 21:15:50,887  INFO    APIs de vuelo no disponibles; usando Skyscanner como respaldo
+2026-05-29 21:15:51,038  INFO    Abriendo: https://www.google.com/flights?hl=es#search;f=BGA;t=MIA;d=20...
+2026-05-29 21:15:55,241  WARNING    ❌ No se pudo extraer el precio
+2026-05-29 21:15:55,271  WARNING    Saltando — no se obtuvo precio
+2026-05-29 21:15:55,272  INFO  
+🔍 🎮 Próximos juegos Game Pass
+2026-05-29 21:15:55,422  INFO    Abriendo: https://www.xbox.com/en-US/xbox-game-pass/games...
+2026-05-29 21:16:02,049  WARNING    ❌ No se pudo extraer el precio
+2026-05-29 21:16:02,093  WARNING    Saltando — no se obtuvo precio
+2026-05-29 21:16:02,109  INFO  
+✅ Revisión completa — 0 alerta(s)
+
+2026-05-29 21:16:02,222  ERROR  Error enviando Discord: HTTP 404 {"message": "Unknown Webhook", "code": 10015}
+2026-05-29 21:16:02,310  INFO  Mensaje enviado a ntfy
+2026-05-29 21:16:02,434  ERROR  Error enviando Discord: HTTP 404 {"message": "Unknown Webhook", "code": 10015}
+2026-05-29 21:16:02,523  INFO  Mensaje enviado a ntfy
