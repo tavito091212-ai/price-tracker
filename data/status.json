@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-05T03:57:42-05:00",
+  "generated_at": "2026-06-05T12:25:50-05:00",
   "products": [
     {
       "id": "vuelo_bog_mia",
@@ -9,7 +9,7 @@
       "target": 1500000,
       "price": null,
       "source": "not_found",
-      "checked_at": "2026-06-05T03:57:26-05:00",
+      "checked_at": "2026-06-05T12:25:34-05:00",
       "state": "missing",
       "state_label": "Sin precio",
       "state_detail": "No se encontro precio usable",
@@ -17,10 +17,10 @@
       "kind_label": "Vuelo",
       "health": {
         "checks": 24,
-        "detected": 1,
-        "missed": 23,
-        "success_rate": 0.041666666666666664,
-        "last_seen": "2026-05-26T21:24:23-05:00",
+        "detected": 0,
+        "missed": 24,
+        "success_rate": 0.0,
+        "last_seen": null,
         "last_state": "missing",
         "last_source": "not_found"
       },
@@ -46,7 +46,7 @@
       "target": 1800000,
       "price": null,
       "source": "not_found",
-      "checked_at": "2026-06-05T03:57:26-05:00",
+      "checked_at": "2026-06-05T12:25:34-05:00",
       "state": "missing",
       "state_label": "Sin precio",
       "state_detail": "No se encontro precio usable",
@@ -54,10 +54,10 @@
       "kind_label": "Vuelo",
       "health": {
         "checks": 24,
-        "detected": 1,
-        "missed": 23,
-        "success_rate": 0.041666666666666664,
-        "last_seen": "2026-05-26T21:24:23-05:00",
+        "detected": 0,
+        "missed": 24,
+        "success_rate": 0.0,
+        "last_seen": null,
         "last_state": "missing",
         "last_source": "not_found"
       },
@@ -83,16 +83,16 @@
       "target": null,
       "price": null,
       "source": "not_found",
-      "checked_at": "2026-06-05T03:57:26-05:00",
+      "checked_at": "2026-06-05T12:25:34-05:00",
       "state": "missing",
       "state_label": "Sin precio",
       "state_detail": "No se encontro precio usable",
       "kind": "gamepass",
       "kind_label": "Gamepass",
       "health": {
-        "checks": 23,
+        "checks": 24,
         "detected": 0,
-        "missed": 23,
+        "missed": 24,
         "success_rate": 0.0,
         "last_seen": null,
         "last_state": "missing",
@@ -103,15 +103,26 @@
   ],
   "alerts": [
     {
-      "id": "gamepass_upcoming",
-      "name": "🎮 Próximos juegos Game Pass",
-      "url": "https://www.xbox.com/en-US/xbox-game-pass/games",
+      "id": "vuelo_bog_mia",
+      "name": "✈️ Vuelo Bogotá → Miami",
+      "url": "https://www.google.com/flights?hl=es#search;f=BOG;t=MIA;d=2026-06-15;r=2026-07-15",
       "current": 0,
       "target": 6,
-      "currency": "N/A",
+      "currency": "COP",
       "drop_pct": 0,
       "reason": "diagnostic",
-      "message": "Lleva 23 revisiones recientes sin precio detectable."
+      "message": "Lleva 24 revisiones recientes sin precio detectable."
+    },
+    {
+      "id": "vuelo_bga_mia",
+      "name": "✈️ Vuelo Bucaramanga → Miami",
+      "url": "https://www.google.com/flights?hl=es#search;f=BGA;t=MIA;d=2026-06-15;r=2026-07-15",
+      "current": 0,
+      "target": 6,
+      "currency": "COP",
+      "drop_pct": 0,
+      "reason": "diagnostic",
+      "message": "Lleva 24 revisiones recientes sin precio detectable."
     }
   ],
   "odds": [
@@ -216,7 +227,7 @@
     "daily_report_enabled": true,
     "diagnostics_enabled": true,
     "backup_enabled": true,
-    "last_backup_marker": "/home/runner/work/price-tracker/price-tracker/data/backups/2026-06-04.marker"
+    "last_backup_marker": "/home/runner/work/price-tracker/price-tracker/data/backups/2026-06-05.marker"
   },
   "channels": {
     "discord": true,
