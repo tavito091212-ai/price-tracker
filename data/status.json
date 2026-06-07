@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-07T00:53:25-05:00",
+  "generated_at": "2026-06-07T04:40:59-05:00",
   "products": [
     {
       "id": "vuelo_bog_mia",
@@ -9,7 +9,7 @@
       "target": 1500000,
       "price": null,
       "source": "not_found",
-      "checked_at": "2026-06-07T00:53:09-05:00",
+      "checked_at": "2026-06-07T04:40:43-05:00",
       "state": "missing",
       "state_label": "Sin precio",
       "state_detail": "No se encontro precio usable",
@@ -46,7 +46,7 @@
       "target": 1800000,
       "price": null,
       "source": "not_found",
-      "checked_at": "2026-06-07T00:53:09-05:00",
+      "checked_at": "2026-06-07T04:40:43-05:00",
       "state": "missing",
       "state_label": "Sin precio",
       "state_detail": "No se encontro precio usable",
@@ -83,7 +83,7 @@
       "target": null,
       "price": null,
       "source": "not_found",
-      "checked_at": "2026-06-07T00:53:09-05:00",
+      "checked_at": "2026-06-07T04:40:43-05:00",
       "state": "missing",
       "state_label": "Sin precio",
       "state_detail": "No se encontro precio usable",
@@ -204,7 +204,7 @@
     "daily_report_enabled": true,
     "diagnostics_enabled": true,
     "backup_enabled": true,
-    "last_backup_marker": "/home/runner/work/price-tracker/price-tracker/data/backups/2026-06-06.marker"
+    "last_backup_marker": "/home/runner/work/price-tracker/price-tracker/data/backups/2026-06-07.marker"
   },
   "channels": {
     "discord": true,
