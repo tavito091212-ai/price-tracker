@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-08T02:05:35-05:00",
+  "generated_at": "2026-06-08T07:10:30-05:00",
   "products": [
     {
       "id": "vuelo_bog_mia",
@@ -9,7 +9,7 @@
       "target": 1500000,
       "price": null,
       "source": "not_found",
-      "checked_at": "2026-06-08T02:05:18-05:00",
+      "checked_at": "2026-06-08T07:10:13-05:00",
       "state": "missing",
       "state_label": "Sin precio",
       "state_detail": "No se encontro precio usable",
@@ -46,7 +46,7 @@
       "target": 1800000,
       "price": null,
       "source": "not_found",
-      "checked_at": "2026-06-08T02:05:18-05:00",
+      "checked_at": "2026-06-08T07:10:13-05:00",
       "state": "missing",
       "state_label": "Sin precio",
       "state_detail": "No se encontro precio usable",
@@ -83,7 +83,7 @@
       "target": null,
       "price": null,
       "source": "not_found",
-      "checked_at": "2026-06-08T02:05:18-05:00",
+      "checked_at": "2026-06-08T07:10:13-05:00",
       "state": "missing",
       "state_label": "Sin precio",
       "state_detail": "No se encontro precio usable",
@@ -101,19 +101,7 @@
       "stats": {}
     }
   ],
-  "alerts": [
-    {
-      "id": "gamepass_upcoming",
-      "name": "🎮 Próximos juegos Game Pass",
-      "url": "https://www.xbox.com/en-US/xbox-game-pass/games",
-      "current": 0,
-      "target": 6,
-      "currency": "N/A",
-      "drop_pct": 0,
-      "reason": "diagnostic",
-      "message": "Lleva 24 revisiones recientes sin precio detectable."
-    }
-  ],
+  "alerts": [],
   "odds": [
     {
       "error": "No encontré partidos con cuotas para los equipos configurados"
@@ -216,7 +204,7 @@
     "daily_report_enabled": true,
     "diagnostics_enabled": true,
     "backup_enabled": true,
-    "last_backup_marker": "/home/runner/work/price-tracker/price-tracker/data/backups/2026-06-07.marker"
+    "last_backup_marker": "/home/runner/work/price-tracker/price-tracker/data/backups/2026-06-08.marker"
   },
   "channels": {
     "discord": true,
