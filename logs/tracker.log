@@ -2760,3 +2760,31 @@
 2026-06-15 12:44:14,625  ERROR  Error enviando Discord: HTTP 404 {"message": "Unknown Webhook", "code": 10015}
 2026-06-15 12:44:14,755  ERROR  Error enviando Discord: HTTP 404 {"message": "Unknown Webhook", "code": 10015}
 2026-06-15 12:44:15,057  INFO  Mensaje enviado a ntfy
+2026-06-15 18:03:33,060  INFO  
+──────────────────────────────────────────────────
+2026-06-15 18:03:33,060  INFO  ▶ Revisando 3 producto(s) — 2026-06-15 18:03
+2026-06-15 18:03:33,060  INFO  ──────────────────────────────────────────────────
+2026-06-15 18:03:33,272  INFO  
+🔍 ✈️ Vuelo Bogotá → Miami
+2026-06-15 18:03:33,272  INFO    APIs de vuelo no disponibles; usando Skyscanner como respaldo
+2026-06-15 18:03:35,052  INFO    Abriendo: https://www.google.com/flights?hl=es#search;f=BOG;t=MIA;d=20...
+2026-06-15 18:03:39,694  WARNING    ❌ No se pudo extraer el precio
+2026-06-15 18:03:39,731  WARNING    Saltando — no se obtuvo precio
+2026-06-15 18:03:39,732  INFO  
+🔍 ✈️ Vuelo Bucaramanga → Miami
+2026-06-15 18:03:39,732  INFO    APIs de vuelo no disponibles; usando Skyscanner como respaldo
+2026-06-15 18:03:39,892  INFO    Abriendo: https://www.google.com/flights?hl=es#search;f=BGA;t=MIA;d=20...
+2026-06-15 18:03:44,286  WARNING    ❌ No se pudo extraer el precio
+2026-06-15 18:03:44,317  WARNING    Saltando — no se obtuvo precio
+2026-06-15 18:03:44,318  INFO  
+🔍 🎮 Próximos juegos Game Pass
+2026-06-15 18:03:44,471  INFO    Abriendo: https://www.xbox.com/en-US/xbox-game-pass/games...
+2026-06-15 18:03:50,589  WARNING    ❌ No se pudo extraer el precio
+2026-06-15 18:03:50,631  WARNING    Saltando — no se obtuvo precio
+2026-06-15 18:03:50,646  INFO  
+✅ Revisión completa — 0 alerta(s)
+
+2026-06-15 18:03:50,749  ERROR  Error enviando Discord: HTTP 404 {"message": "Unknown Webhook", "code": 10015}
+2026-06-15 18:03:50,852  INFO  Mensaje enviado a ntfy
+2026-06-15 18:03:50,948  ERROR  Error enviando Discord: HTTP 404 {"message": "Unknown Webhook", "code": 10015}
+2026-06-15 18:03:51,005  INFO  Mensaje enviado a ntfy
