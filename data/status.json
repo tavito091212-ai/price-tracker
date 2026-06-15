@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-15T00:30:06-05:00",
+  "generated_at": "2026-06-15T07:44:14-05:00",
   "products": [
     {
       "id": "vuelo_bog_mia",
@@ -9,7 +9,7 @@
       "target": 1500000,
       "price": null,
       "source": "not_found",
-      "checked_at": "2026-06-15T00:29:49-05:00",
+      "checked_at": "2026-06-15T07:43:59-05:00",
       "state": "missing",
       "state_label": "Sin precio",
       "state_detail": "No se encontro precio usable",
@@ -46,7 +46,7 @@
       "target": 1800000,
       "price": null,
       "source": "not_found",
-      "checked_at": "2026-06-15T00:29:49-05:00",
+      "checked_at": "2026-06-15T07:43:59-05:00",
       "state": "missing",
       "state_label": "Sin precio",
       "state_detail": "No se encontro precio usable",
@@ -83,7 +83,7 @@
       "target": null,
       "price": null,
       "source": "not_found",
-      "checked_at": "2026-06-15T00:29:49-05:00",
+      "checked_at": "2026-06-15T07:43:59-05:00",
       "state": "missing",
       "state_label": "Sin precio",
       "state_detail": "No se encontro precio usable",
@@ -101,7 +101,41 @@
       "stats": {}
     }
   ],
-  "alerts": [],
+  "alerts": [
+    {
+      "id": "vuelo_bog_mia",
+      "name": "✈️ Vuelo Bogotá → Miami",
+      "url": "https://www.google.com/flights?hl=es#search;f=BOG;t=MIA;d=2026-06-15;r=2026-07-15",
+      "current": 0,
+      "target": 6,
+      "currency": "COP",
+      "drop_pct": 0,
+      "reason": "diagnostic",
+      "message": "Lleva 24 revisiones recientes sin precio detectable."
+    },
+    {
+      "id": "vuelo_bga_mia",
+      "name": "✈️ Vuelo Bucaramanga → Miami",
+      "url": "https://www.google.com/flights?hl=es#search;f=BGA;t=MIA;d=2026-06-15;r=2026-07-15",
+      "current": 0,
+      "target": 6,
+      "currency": "COP",
+      "drop_pct": 0,
+      "reason": "diagnostic",
+      "message": "Lleva 24 revisiones recientes sin precio detectable."
+    },
+    {
+      "id": "gamepass_upcoming",
+      "name": "🎮 Próximos juegos Game Pass",
+      "url": "https://www.xbox.com/en-US/xbox-game-pass/games",
+      "current": 0,
+      "target": 6,
+      "currency": "N/A",
+      "drop_pct": 0,
+      "reason": "diagnostic",
+      "message": "Lleva 24 revisiones recientes sin precio detectable."
+    }
+  ],
   "odds": [
     {
       "error": "No encontré partidos con cuotas para los equipos configurados"
@@ -204,7 +238,7 @@
     "daily_report_enabled": true,
     "diagnostics_enabled": true,
     "backup_enabled": true,
-    "last_backup_marker": "/home/runner/work/price-tracker/price-tracker/data/backups/2026-06-14.marker"
+    "last_backup_marker": "/home/runner/work/price-tracker/price-tracker/data/backups/2026-06-15.marker"
   },
   "channels": {
     "discord": true,
