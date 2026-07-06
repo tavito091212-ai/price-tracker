@@ -1,0 +1,258 @@
+{
+  "bot": {
+    "interval_minutes": 60,
+    "dashboard": "dashboard.html",
+    "alert_cooldown_hours": 12,
+    "web_port": 8765,
+    "daily_report_enabled": true,
+    "daily_report_hour": 20,
+    "diagnostics_enabled": true,
+    "diagnostic_missed_threshold": 6,
+    "channel_test_enabled": true,
+    "channel_test_hour": 9,
+    "backup_enabled": true,
+    "backup_keep_days": 14
+  },
+  "alert_drop_pct": 15,
+  "alert_last_drop_pct": 5,
+  "alert_rise_pct": 10,
+  "email": {
+    "enabled": false,
+    "sender": "andresnvz3456@gmail.com",
+    "password": "",
+    "receiver": "andresnvz3456@gmail.com",
+    "smtp": "smtp.gmail.com",
+    "port": 587
+  },
+  "discord": {
+    "enabled": true,
+    "webhook_url": "",
+    "webhook_url_env": "DISCORD_WEBHOOK_URL",
+    "username": "Price Tracker Bot",
+    "notify_every_check": true
+  },
+  "whatsapp": {
+    "enabled": false,
+    "graph_version": "v25.0",
+    "phone_number_id": "",
+    "phone_number_id_env": "WHATSAPP_PHONE_NUMBER_ID",
+    "access_token": "",
+    "access_token_env": "WHATSAPP_ACCESS_TOKEN",
+    "recipient_phone": "",
+    "recipient_phone_env": "WHATSAPP_TO",
+    "notify_every_check": true
+  },
+  "ntfy": {
+    "enabled": true,
+    "server": "https://ntfy.sh",
+    "topic": "andres-price-tracker-1d93e01f80f0",
+    "priority": "default",
+    "tags": "moneybag,soccer",
+    "click": "",
+    "notify_every_check": true
+  },
+  "odds": {
+    "enabled": true,
+    "api_key": "",
+    "api_key_env": "ODDS_API_KEY",
+    "regions": "us,eu",
+    "markets": "h2h",
+    "odds_format": "decimal",
+    "max_matches_per_team": 5,
+    "note": "Champions League y Mundial FIFA 2026",
+    "competitions": [
+      {
+        "name": "Champions League",
+        "sport_key": "soccer_uefa_champs_league",
+        "teams": [
+          {
+            "name": "Barcelona",
+            "aliases": ["Barcelona", "FC Barcelona", "Barça"],
+            "max_matches": 3,
+            "track_wins": true
+          },
+          {
+            "name": "Inter Miami",
+            "aliases": ["Inter Miami", "Inter Miami CF"],
+            "max_matches": 3,
+            "track_wins": true
+          }
+        ]
+      },
+      {
+        "name": "Copa Libertadores",
+        "sport_key": "soccer_conmebol_libertadores",
+        "teams": [
+          {
+            "name": "Atlético Nacional",
+            "aliases": ["Atlético Nacional", "Atletico Nacional"],
+            "max_matches": 2,
+            "track_wins": false
+          }
+        ]
+      },
+      {
+        "name": "Eliminatorias Sudamericanas (Mundial 2026)",
+        "sport_key": "soccer_conmebol_qualifiers",
+        "teams": [
+          {
+            "name": "Colombia",
+            "aliases": ["Colombia", "Selección Colombia"],
+            "max_matches": 2,
+            "track_wins": false
+          },
+          {
+            "name": "Argentina",
+            "aliases": ["Argentina", "Selección Argentina"],
+            "max_matches": 2,
+            "track_wins": false
+          }
+        ]
+      },
+      {
+        "name": "Premier League",
+        "sport_key": "soccer_epl",
+        "teams": [
+          {
+            "name": "Manchester City",
+            "aliases": ["Manchester City", "Man City"],
+            "max_matches": 2,
+            "track_wins": false
+          }
+        ]
+      }
+    ]
+  },
+  "game_pass": {
+    "enabled": true,
+    "api_key": "",
+    "api_key_env": "GAMEPASS_API_KEY",
+    "region": "CO",
+    "note": "Próximos lanzamientos en Game Pass. Ver: https://www.xbox.com/en-US/xbox-game-pass/games",
+    "min_relevance_score": 0.6,
+    "tracking": {
+      "genres": ["action", "rpg", "adventure", "indie"],
+      "exclude_genres": ["puzzle"],
+      "min_rating": 6.5,
+      "include_day_one": true
+    }
+  },
+  "serpapi": {
+    "enabled": true,
+    "api_key": "",
+    "api_key_env": "SERPAPI_KEY",
+    "note": "Google Flights via SerpAPI. 100 búsquedas gratis/mes. Regístrate en https://serpapi.com"
+  },
+  "providers": {
+    "keepa": {
+      "enabled": false,
+      "api_key": "",
+      "api_key_env": "KEEPA_API_KEY",
+      "stats_days": 30,
+      "note": "Opcional para precios confiables de Amazon."
+    },
+    "amadeus": {
+      "enabled": true,
+      "client_id": "",
+      "client_id_env": "AMADEUS_CLIENT_ID",
+      "client_secret": "",
+      "client_secret_env": "AMADEUS_CLIENT_SECRET",
+      "base_url": "https://test.api.amadeus.com",
+      "max_offers": 10,
+      "note": "Recomendado para vuelos. Production: https://api.amadeus.com"
+    }
+  },
+  "products": [
+    {
+      "id": "vuelo_bog_mia",
+      "kind": "flight",
+      "name": "✈️ Vuelo Bogotá → Miami",
+      "url": "https://www.google.com/flights?hl=es#search;f=BOG;t=MIA;d=2026-06-15;r=2026-07-15",
+      "origin": "BOG",
+      "destination": "MIA",
+      "departure_date": "2026-06-15",
+      "return_date": "2026-07-15",
+      "adults": 1,
+      "cabin_class": "economy",
+      "target_price": 1500000,
+      "currency": "COP",
+      "active": true,
+      "notes": "Vuelo ida y vuelta. Verificar en Google Flights"
+    },
+    {
+      "id": "vuelo_bga_mia",
+      "kind": "flight",
+      "name": "✈️ Vuelo Bucaramanga → Miami",
+      "url": "https://www.google.com/flights?hl=es#search;f=BGA;t=MIA;d=2026-06-15;r=2026-07-15",
+      "origin": "BGA",
+      "destination": "MIA",
+      "departure_date": "2026-06-15",
+      "return_date": "2026-07-15",
+      "adults": 1,
+      "cabin_class": "economy",
+      "target_price": 1800000,
+      "currency": "COP",
+      "active": true,
+      "notes": "Alternativa desde Bucaramanga"
+    },
+    {
+      "id": "vuelo_bog_lax",
+      "kind": "flight",
+      "name": "✈️ Vuelo Bogotá → Los Angeles",
+      "url": "https://www.google.com/flights?hl=es#search;f=BOG;t=LAX;d=2026-07-01;r=2026-07-31",
+      "origin": "BOG",
+      "destination": "LAX",
+      "departure_date": "2026-07-01",
+      "return_date": "2026-07-31",
+      "adults": 1,
+      "cabin_class": "economy",
+      "target_price": 2000000,
+      "currency": "COP",
+      "active": false,
+      "notes": "Opcional: California"
+    },
+    {
+      "id": "vuelo_bog_nyc",
+      "kind": "flight",
+      "name": "✈️ Vuelo Bogotá → Nueva York",
+      "url": "https://www.google.com/flights?hl=es#search;f=BOG;t=NYC;d=2026-08-01;r=2026-08-31",
+      "origin": "BOG",
+      "destination": "NYC",
+      "departure_date": "2026-08-01",
+      "return_date": "2026-08-31",
+      "adults": 1,
+      "cabin_class": "economy",
+      "target_price": 1800000,
+      "currency": "COP",
+      "active": false,
+      "notes": "Opcional: Nueva York"
+    },
+    {
+      "id": "gamepass_upcoming",
+      "kind": "gamepass",
+      "name": "🎮 Próximos juegos Game Pass",
+      "url": "https://www.xbox.com/en-US/xbox-game-pass/games",
+      "region": "CO",
+      "target_price": null,
+      "currency": "N/A",
+      "active": true,
+      "track_release_dates": true,
+      "notify_on_new_release": true,
+      "notes": "Monitorea nuevos lanzamientos en Game Pass. Actualiza diariamente."
+    }
+  ],
+  "notifications": {
+    "flight_price_drop": {
+      "channels": ["discord", "ntfy"],
+      "template": "Alerta de vuelo: {name} bajó a {currency} {price:,.0f} (objetivo: {target_price:,.0f})"
+    },
+    "game_pass_new_release": {
+      "channels": ["discord", "ntfy"],
+      "template": "🎮 Nuevo en Game Pass: {name} - {release_date} ({genre})"
+    },
+    "sports_odds": {
+      "channels": ["discord", "ntfy"],
+      "template": "⚽ {competition}: {home_team} vs {away_team} - Cuota ganador: {best_price} ({bookmaker})"
+    }
+  }
+}
