@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-11T10:17:24-05:00",
+  "generated_at": "2026-07-11T12:17:22-05:00",
   "products": [
     {
       "id": "vuelo_bog_mia",
@@ -9,7 +9,7 @@
       "target": 1500000,
       "price": null,
       "source": "not_found",
-      "checked_at": "2026-07-11T10:17:09-05:00",
+      "checked_at": "2026-07-11T12:17:06-05:00",
       "state": "missing",
       "state_label": "Sin precio",
       "state_detail": "No se encontro precio usable",
@@ -46,7 +46,7 @@
       "target": 1800000,
       "price": null,
       "source": "not_found",
-      "checked_at": "2026-07-11T10:17:09-05:00",
+      "checked_at": "2026-07-11T12:17:06-05:00",
       "state": "missing",
       "state_label": "Sin precio",
       "state_detail": "No se encontro precio usable",
@@ -83,7 +83,7 @@
       "target": null,
       "price": null,
       "source": "not_found",
-      "checked_at": "2026-07-11T10:17:09-05:00",
+      "checked_at": "2026-07-11T12:17:06-05:00",
       "state": "missing",
       "state_label": "Sin precio",
       "state_detail": "No se encontro precio usable",
