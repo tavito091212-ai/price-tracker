@@ -26159,3 +26159,29 @@
 2026-08-26 19:18:58,335  ERROR  Error enviando Discord: HTTP 404 {"message": "Unknown Webhook", "code": 10015}
 2026-08-26 19:18:58,532  ERROR  Error enviando Discord: HTTP 404 {"message": "Unknown Webhook", "code": 10015}
 2026-08-26 19:18:58,802  INFO  Mensaje enviado a ntfy
+2026-08-26 23:37:02,174  INFO  
+──────────────────────────────────────────────────
+2026-08-26 23:37:02,175  INFO  ▶ Revisando 3 producto(s) — 2026-08-26 23:37
+2026-08-26 23:37:02,175  INFO  ──────────────────────────────────────────────────
+2026-08-26 23:37:02,365  INFO  
+🔍 ✈️ Vuelo Bogotá → Miami
+2026-08-26 23:37:02,366  INFO    APIs de vuelo no disponibles; usando Skyscanner como respaldo
+2026-08-26 23:37:02,649  INFO    Abriendo: https://www.google.com/flights?hl=es#search;f=BOG;t=MIA;d=20...
+2026-08-26 23:37:07,153  WARNING    ❌ No se pudo extraer el precio
+2026-08-26 23:37:07,184  WARNING    Saltando — no se obtuvo precio
+2026-08-26 23:37:07,184  INFO  
+🔍 ✈️ Vuelo Bucaramanga → Miami
+2026-08-26 23:37:07,185  INFO    APIs de vuelo no disponibles; usando Skyscanner como respaldo
+2026-08-26 23:37:07,343  INFO    Abriendo: https://www.google.com/flights?hl=es#search;f=BGA;t=MIA;d=20...
+2026-08-26 23:37:11,766  WARNING    ❌ No se pudo extraer el precio
+2026-08-26 23:37:11,792  WARNING    Saltando — no se obtuvo precio
+2026-08-26 23:37:11,793  INFO  
+🔍 🎮 Próximos juegos Game Pass
+2026-08-26 23:37:11,970  INFO    Abriendo: https://www.xbox.com/en-US/xbox-game-pass/games...
+2026-08-26 23:37:18,315  WARNING    ❌ No se pudo extraer el precio
+2026-08-26 23:37:18,344  WARNING    Saltando — no se obtuvo precio
+2026-08-26 23:37:18,360  INFO  
+✅ Revisión completa — 0 alerta(s)
+
+2026-08-26 23:37:18,558  ERROR  Error enviando Discord: HTTP 404 {"message": "Unknown Webhook", "code": 10015}
+2026-08-26 23:37:18,778  INFO  Mensaje enviado a ntfy
