@@ -27697,3 +27697,33 @@
 2026-09-06 23:57:09,883  ERROR  Error enviando Discord: HTTP 404 {"message": "Unknown Webhook", "code": 10015}
 2026-09-06 23:57:10,078  ERROR  Error enviando Discord: HTTP 404 {"message": "Unknown Webhook", "code": 10015}
 2026-09-06 23:57:10,364  INFO  Mensaje enviado a ntfy
+2026-09-07 04:45:53,281  INFO  
+──────────────────────────────────────────────────
+2026-09-07 04:45:53,281  INFO  ▶ Revisando 3 producto(s) — 2026-09-07 04:45
+2026-09-07 04:45:53,281  INFO  ──────────────────────────────────────────────────
+2026-09-07 04:45:53,502  INFO  
+🔍 ✈️ Vuelo Bogotá → Miami
+2026-09-07 04:45:53,502  INFO    APIs de vuelo no disponibles; usando Skyscanner como respaldo
+2026-09-07 04:45:54,042  INFO    Abriendo: https://www.google.com/flights?hl=es#search;f=BOG;t=MIA;d=20...
+2026-09-07 04:45:58,425  WARNING    ❌ No se pudo extraer el precio
+2026-09-07 04:45:58,459  WARNING    Saltando — no se obtuvo precio
+2026-09-07 04:45:58,460  INFO  
+🔍 ✈️ Vuelo Bucaramanga → Miami
+2026-09-07 04:45:58,460  INFO    APIs de vuelo no disponibles; usando Skyscanner como respaldo
+2026-09-07 04:45:58,642  INFO    Abriendo: https://www.google.com/flights?hl=es#search;f=BGA;t=MIA;d=20...
+2026-09-07 04:46:02,858  WARNING    ❌ No se pudo extraer el precio
+2026-09-07 04:46:02,890  WARNING    Saltando — no se obtuvo precio
+2026-09-07 04:46:02,891  INFO  
+🔍 🎮 Próximos juegos Game Pass
+2026-09-07 04:46:03,062  INFO    Abriendo: https://www.xbox.com/en-US/xbox-game-pass/games...
+2026-09-07 04:46:08,259  WARNING    ❌ No se pudo extraer el precio
+2026-09-07 04:46:08,312  WARNING    Saltando — no se obtuvo precio
+2026-09-07 04:46:08,331  INFO  
+✅ Revisión completa — 0 alerta(s)
+
+2026-09-07 04:46:08,576  ERROR  Error enviando Discord: HTTP 404 {"message": "Unknown Webhook", "code": 10015}
+2026-09-07 04:46:23,659  ERROR  Error enviando ntfy: <urlopen error [Errno 101] Network is unreachable>
+2026-09-07 04:46:23,843  ERROR  Error enviando Discord: HTTP 404 {"message": "Unknown Webhook", "code": 10015}
+2026-09-07 04:46:38,880  ERROR  Error enviando ntfy: <urlopen error [Errno 101] Network is unreachable>
+2026-09-07 04:46:39,055  ERROR  Error enviando Discord: HTTP 404 {"message": "Unknown Webhook", "code": 10015}
+2026-09-07 04:46:54,092  ERROR  Error enviando ntfy: <urlopen error [Errno 101] Network is unreachable>
