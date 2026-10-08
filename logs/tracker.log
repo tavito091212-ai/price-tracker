@@ -32019,3 +32019,33 @@
 2026-10-07 22:00:37,516  ERROR  Error enviando Discord: HTTP 404 {"message": "Unknown Webhook", "code": 10015}
 2026-10-07 22:00:37,663  ERROR  Error enviando Discord: HTTP 404 {"message": "Unknown Webhook", "code": 10015}
 2026-10-07 22:00:37,797  INFO  Mensaje enviado a ntfy
+2026-10-08 01:58:12,304  INFO  
+──────────────────────────────────────────────────
+2026-10-08 01:58:12,304  INFO  ▶ Revisando 3 producto(s) — 2026-10-08 01:58
+2026-10-08 01:58:12,304  INFO  ──────────────────────────────────────────────────
+2026-10-08 01:58:12,556  INFO  
+🔍 ✈️ Vuelo Bogotá → Miami
+2026-10-08 01:58:12,556  INFO    APIs de vuelo no disponibles; usando Skyscanner como respaldo
+2026-10-08 01:58:12,819  INFO    Abriendo: https://www.google.com/flights?hl=es#search;f=BOG;t=MIA;d=20...
+2026-10-08 01:58:17,250  WARNING    ❌ No se pudo extraer el precio
+2026-10-08 01:58:17,287  WARNING    Saltando — no se obtuvo precio
+2026-10-08 01:58:17,288  INFO  
+🔍 ✈️ Vuelo Bucaramanga → Miami
+2026-10-08 01:58:17,288  INFO    APIs de vuelo no disponibles; usando Skyscanner como respaldo
+2026-10-08 01:58:17,460  INFO    Abriendo: https://www.google.com/flights?hl=es#search;f=BGA;t=MIA;d=20...
+2026-10-08 01:58:21,675  WARNING    ❌ No se pudo extraer el precio
+2026-10-08 01:58:21,710  WARNING    Saltando — no se obtuvo precio
+2026-10-08 01:58:21,710  INFO  
+🔍 🎮 Próximos juegos Game Pass
+2026-10-08 01:58:21,888  INFO    Abriendo: https://www.xbox.com/en-US/xbox-game-pass/games...
+2026-10-08 01:58:28,026  WARNING    ❌ No se pudo extraer el precio
+2026-10-08 01:58:28,072  WARNING    Saltando — no se obtuvo precio
+2026-10-08 01:58:28,092  INFO  
+✅ Revisión completa — 0 alerta(s)
+
+2026-10-08 01:58:28,177  ERROR  Error enviando Discord: HTTP 404 {"message": "Unknown Webhook", "code": 10015}
+2026-10-08 01:58:28,252  INFO  Mensaje enviado a ntfy
+2026-10-08 01:58:28,351  ERROR  Error enviando Discord: HTTP 404 {"message": "Unknown Webhook", "code": 10015}
+2026-10-08 01:58:28,398  INFO  Mensaje enviado a ntfy
+2026-10-08 01:58:28,494  ERROR  Error enviando Discord: HTTP 404 {"message": "Unknown Webhook", "code": 10015}
+2026-10-08 01:58:28,541  INFO  Mensaje enviado a ntfy
