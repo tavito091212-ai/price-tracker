@@ -1,0 +1,80 @@
+{
+  "rdr2_steam": {
+    "name": "Red Dead Redemption 2 - Steam",
+    "url": "https://store.steampowered.com/app/1174180/Red_Dead_Redemption_2/",
+    "currency": "COP",
+    "prices": [
+      {
+        "price": 5999.0,
+        "date": "2026-05-27 00:08",
+        "source": ".game_purchase_price.price"
+      },
+      {
+        "price": 5999.0,
+        "date": "2026-05-27 02:11",
+        "source": ".game_purchase_price.price"
+      },
+      {
+        "price": 5999.0,
+        "date": "2026-05-27 02:20",
+        "source": ".game_purchase_price.price"
+      },
+      {
+        "price": 5999.0,
+        "date": "2026-05-27 02:24",
+        "source": ".game_purchase_price.price"
+      }
+    ]
+  },
+  "echo_dot_5": {
+    "name": "Amazon Echo Dot 5ta Gen",
+    "url": "https://www.amazon.com/Amazon-vibrant-helpful-routines-Charcoal/dp/B09B8V1LZ3",
+    "currency": "USD",
+    "prices": [
+      {
+        "price": 49.99,
+        "date": "2026-05-27 00:08",
+        "source": "span.a-price.aok-align-center .a-offscreen"
+      },
+      {
+        "price": 49.99,
+        "date": "2026-05-27 02:11",
+        "source": "span.a-price.aok-align-center .a-offscreen"
+      },
+      {
+        "price": 49.99,
+        "date": "2026-05-27 02:20",
+        "source": "span.a-price.aok-align-center .a-offscreen"
+      },
+      {
+        "price": 49.99,
+        "date": "2026-05-27 02:24",
+        "source": "span.a-price.aok-align-center .a-offscreen"
+      }
+    ]
+  },
+  "vuelo_bog_mia": {
+    "name": "Vuelo Bogotá → Miami (Jun-Jul)",
+    "url": "https://www.skyscanner.com.co/transport/flights/bog/mia/2506/2507/?adultsv2=1&cabinclass=economy",
+    "currency": "COP",
+    "prices": [
+      {
+        "price": 1131410.0,
+        "date": "2026-05-27 02:24",
+        "source": "serpapi"
+      }
+    ]
+  },
+  "vuelo_bga_mia": {
+    "name": "Vuelo Bucaramanga → Miami (Jun-Jul)",
+    "url": "https://www.skyscanner.com.co/transport/flights/bga/mia/2506/2507/?adultsv2=1&cabinclass=economy",
+    "currency": "COP",
+    "prices": [
+      {
+        "price": 1178780.0,
+        "date": "2026-05-27 02:24",
+        "source": "serpapi"
+      }
+    ]
+  }
+}
