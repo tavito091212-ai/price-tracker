@@ -33588,3 +33588,33 @@
 
 2026-10-19 22:23:20,702  ERROR  Error enviando Discord: HTTP 404 {"message": "Unknown Webhook", "code": 10015}
 2026-10-19 22:23:20,823  INFO  Mensaje enviado a ntfy
+2026-10-20 01:51:23,845  INFO  
+──────────────────────────────────────────────────
+2026-10-20 01:51:23,845  INFO  ▶ Revisando 3 producto(s) — 2026-10-20 01:51
+2026-10-20 01:51:23,845  INFO  ──────────────────────────────────────────────────
+2026-10-20 01:51:24,053  INFO  
+🔍 ✈️ Vuelo Bogotá → Miami
+2026-10-20 01:51:24,054  INFO    APIs de vuelo no disponibles; usando Skyscanner como respaldo
+2026-10-20 01:51:25,151  INFO    Abriendo: https://www.google.com/flights?hl=es#search;f=BOG;t=MIA;d=20...
+2026-10-20 01:51:29,453  WARNING    ❌ No se pudo extraer el precio
+2026-10-20 01:51:29,495  WARNING    Saltando — no se obtuvo precio
+2026-10-20 01:51:29,496  INFO  
+🔍 ✈️ Vuelo Bucaramanga → Miami
+2026-10-20 01:51:29,496  INFO    APIs de vuelo no disponibles; usando Skyscanner como respaldo
+2026-10-20 01:51:29,663  INFO    Abriendo: https://www.google.com/flights?hl=es#search;f=BGA;t=MIA;d=20...
+2026-10-20 01:51:33,856  WARNING    ❌ No se pudo extraer el precio
+2026-10-20 01:51:33,893  WARNING    Saltando — no se obtuvo precio
+2026-10-20 01:51:33,895  INFO  
+🔍 🎮 Próximos juegos Game Pass
+2026-10-20 01:51:34,066  INFO    Abriendo: https://www.xbox.com/en-US/xbox-game-pass/games...
+2026-10-20 01:51:41,257  WARNING    ❌ No se pudo extraer el precio
+2026-10-20 01:51:41,295  WARNING    Saltando — no se obtuvo precio
+2026-10-20 01:51:41,315  INFO  
+✅ Revisión completa — 0 alerta(s)
+
+2026-10-20 01:51:41,463  ERROR  Error enviando Discord: HTTP 404 {"message": "Unknown Webhook", "code": 10015}
+2026-10-20 01:51:41,895  INFO  Mensaje enviado a ntfy
+2026-10-20 01:51:42,061  ERROR  Error enviando Discord: HTTP 404 {"message": "Unknown Webhook", "code": 10015}
+2026-10-20 01:51:42,307  INFO  Mensaje enviado a ntfy
+2026-10-20 01:51:42,471  ERROR  Error enviando Discord: HTTP 404 {"message": "Unknown Webhook", "code": 10015}
+2026-10-20 01:51:42,715  INFO  Mensaje enviado a ntfy
