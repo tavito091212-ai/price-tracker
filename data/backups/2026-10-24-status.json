@@ -1,0 +1,249 @@
+{
+  "generated_at": "2026-10-24T00:56:35-05:00",
+  "products": [
+    {
+      "id": "vuelo_bog_mia",
+      "name": "✈️ Vuelo Bogotá → Miami",
+      "url": "https://www.google.com/flights?hl=es#search;f=BOG;t=MIA;d=2026-06-15;r=2026-07-15",
+      "currency": "COP",
+      "target": 1500000,
+      "price": null,
+      "source": "not_found",
+      "checked_at": "2026-10-24T00:56:18-05:00",
+      "state": "missing",
+      "state_label": "Sin precio",
+      "state_detail": "No se encontro precio usable",
+      "kind": "flight",
+      "kind_label": "Vuelo",
+      "health": {
+        "checks": 24,
+        "detected": 0,
+        "missed": 24,
+        "success_rate": 0.0,
+        "last_seen": null,
+        "last_state": "missing",
+        "last_source": "not_found"
+      },
+      "stats": {
+        "current": 1131410.0,
+        "min": 1131410.0,
+        "max": 1131410.0,
+        "avg": 1131410.0,
+        "avg_7": 1131410.0,
+        "count": 1,
+        "previous": 1131410.0,
+        "change_pct": 0.0,
+        "is_historical_low": false,
+        "last_seen": "2026-05-27 02:24",
+        "trend": "flat"
+      }
+    },
+    {
+      "id": "vuelo_bga_mia",
+      "name": "✈️ Vuelo Bucaramanga → Miami",
+      "url": "https://www.google.com/flights?hl=es#search;f=BGA;t=MIA;d=2026-06-15;r=2026-07-15",
+      "currency": "COP",
+      "target": 1800000,
+      "price": null,
+      "source": "not_found",
+      "checked_at": "2026-10-24T00:56:18-05:00",
+      "state": "missing",
+      "state_label": "Sin precio",
+      "state_detail": "No se encontro precio usable",
+      "kind": "flight",
+      "kind_label": "Vuelo",
+      "health": {
+        "checks": 24,
+        "detected": 0,
+        "missed": 24,
+        "success_rate": 0.0,
+        "last_seen": null,
+        "last_state": "missing",
+        "last_source": "not_found"
+      },
+      "stats": {
+        "current": 1178780.0,
+        "min": 1178780.0,
+        "max": 1178780.0,
+        "avg": 1178780.0,
+        "avg_7": 1178780.0,
+        "count": 1,
+        "previous": 1178780.0,
+        "change_pct": 0.0,
+        "is_historical_low": false,
+        "last_seen": "2026-05-27 02:24",
+        "trend": "flat"
+      }
+    },
+    {
+      "id": "gamepass_upcoming",
+      "name": "🎮 Próximos juegos Game Pass",
+      "url": "https://www.xbox.com/en-US/xbox-game-pass/games",
+      "currency": "N/A",
+      "target": null,
+      "price": null,
+      "source": "not_found",
+      "checked_at": "2026-10-24T00:56:18-05:00",
+      "state": "missing",
+      "state_label": "Sin precio",
+      "state_detail": "No se encontro precio usable",
+      "kind": "gamepass",
+      "kind_label": "Gamepass",
+      "health": {
+        "checks": 24,
+        "detected": 0,
+        "missed": 24,
+        "success_rate": 0.0,
+        "last_seen": null,
+        "last_state": "missing",
+        "last_source": "not_found"
+      },
+      "stats": {}
+    }
+  ],
+  "alerts": [
+    {
+      "id": "vuelo_bog_mia",
+      "name": "✈️ Vuelo Bogotá → Miami",
+      "url": "https://www.google.com/flights?hl=es#search;f=BOG;t=MIA;d=2026-06-15;r=2026-07-15",
+      "current": 0,
+      "target": 6,
+      "currency": "COP",
+      "drop_pct": 0,
+      "reason": "diagnostic",
+      "message": "Lleva 24 revisiones recientes sin precio detectable."
+    },
+    {
+      "id": "vuelo_bga_mia",
+      "name": "✈️ Vuelo Bucaramanga → Miami",
+      "url": "https://www.google.com/flights?hl=es#search;f=BGA;t=MIA;d=2026-06-15;r=2026-07-15",
+      "current": 0,
+      "target": 6,
+      "currency": "COP",
+      "drop_pct": 0,
+      "reason": "diagnostic",
+      "message": "Lleva 24 revisiones recientes sin precio detectable."
+    },
+    {
+      "id": "gamepass_upcoming",
+      "name": "🎮 Próximos juegos Game Pass",
+      "url": "https://www.xbox.com/en-US/xbox-game-pass/games",
+      "current": 0,
+      "target": 6,
+      "currency": "N/A",
+      "drop_pct": 0,
+      "reason": "diagnostic",
+      "message": "Lleva 24 revisiones recientes sin precio detectable."
+    }
+  ],
+  "odds": [
+    {
+      "error": "No encontré partidos con cuotas para los equipos configurados"
+    }
+  ],
+  "history": {
+    "rdr2_steam": {
+      "name": "Red Dead Redemption 2 - Steam",
+      "url": "https://store.steampowered.com/app/1174180/Red_Dead_Redemption_2/",
+      "currency": "COP",
+      "prices": [
+        {
+          "price": 5999.0,
+          "date": "2026-05-27 00:08",
+          "source": ".game_purchase_price.price"
+        },
+        {
+          "price": 5999.0,
+          "date": "2026-05-27 02:11",
+          "source": ".game_purchase_price.price"
+        },
+        {
+          "price": 5999.0,
+          "date": "2026-05-27 02:20",
+          "source": ".game_purchase_price.price"
+        },
+        {
+          "price": 5999.0,
+          "date": "2026-05-27 02:24",
+          "source": ".game_purchase_price.price"
+        }
+      ]
+    },
+    "echo_dot_5": {
+      "name": "Amazon Echo Dot 5ta Gen",
+      "url": "https://www.amazon.com/Amazon-vibrant-helpful-routines-Charcoal/dp/B09B8V1LZ3",
+      "currency": "USD",
+      "prices": [
+        {
+          "price": 49.99,
+          "date": "2026-05-27 00:08",
+          "source": "span.a-price.aok-align-center .a-offscreen"
+        },
+        {
+          "price": 49.99,
+          "date": "2026-05-27 02:11",
+          "source": "span.a-price.aok-align-center .a-offscreen"
+        },
+        {
+          "price": 49.99,
+          "date": "2026-05-27 02:20",
+          "source": "span.a-price.aok-align-center .a-offscreen"
+        },
+        {
+          "price": 49.99,
+          "date": "2026-05-27 02:24",
+          "source": "span.a-price.aok-align-center .a-offscreen"
+        }
+      ]
+    },
+    "vuelo_bog_mia": {
+      "name": "Vuelo Bogotá → Miami (Jun-Jul)",
+      "url": "https://www.skyscanner.com.co/transport/flights/bog/mia/2506/2507/?adultsv2=1&cabinclass=economy",
+      "currency": "COP",
+      "prices": [
+        {
+          "price": 1131410.0,
+          "date": "2026-05-27 02:24",
+          "source": "serpapi"
+        }
+      ]
+    },
+    "vuelo_bga_mia": {
+      "name": "Vuelo Bucaramanga → Miami (Jun-Jul)",
+      "url": "https://www.skyscanner.com.co/transport/flights/bga/mia/2506/2507/?adultsv2=1&cabinclass=economy",
+      "currency": "COP",
+      "prices": [
+        {
+          "price": 1178780.0,
+          "date": "2026-05-27 02:24",
+          "source": "serpapi"
+        }
+      ]
+    }
+  },
+  "summary": {
+    "checked": 3,
+    "detected": 0,
+    "missing": 3,
+    "blocked": 0,
+    "timeout": 0,
+    "problems": [
+      "- ✈️ Vuelo Bogotá → Miami: Sin precio | No se encontro precio usable",
+      "- ✈️ Vuelo Bucaramanga → Miami: Sin precio | No se encontro precio usable",
+      "- 🎮 Próximos juegos Game Pass: Sin precio | No se encontro precio usable"
+    ]
+  },
+  "bot": {
+    "interval_minutes": 60,
+    "daily_report_enabled": true,
+    "diagnostics_enabled": true,
+    "backup_enabled": true,
+    "last_backup_marker": "/home/runner/work/price-tracker/price-tracker/data/backups/2026-10-23.marker"
+  },
+  "channels": {
+    "discord": true,
+    "ntfy": true,
+    "whatsapp": false,
+    "email": false
+  }
+}
