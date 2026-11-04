@@ -35529,3 +35529,31 @@
 2026-11-04 09:18:53,363  ERROR  Error enviando Discord: HTTP 404 {"message": "Unknown Webhook", "code": 10015}
 2026-11-04 09:18:53,537  ERROR  Error enviando Discord: HTTP 404 {"message": "Unknown Webhook", "code": 10015}
 2026-11-04 09:18:53,869  INFO  Mensaje enviado a ntfy
+2026-11-04 17:59:46,661  INFO  
+──────────────────────────────────────────────────
+2026-11-04 17:59:46,661  INFO  ▶ Revisando 3 producto(s) — 2026-11-04 17:59
+2026-11-04 17:59:46,661  INFO  ──────────────────────────────────────────────────
+2026-11-04 17:59:46,793  INFO  
+🔍 ✈️ Vuelo Bogotá → Miami
+2026-11-04 17:59:46,793  INFO    APIs de vuelo no disponibles; usando Skyscanner como respaldo
+2026-11-04 17:59:47,205  INFO    Abriendo: https://www.google.com/flights?hl=es#search;f=BOG;t=MIA;d=20...
+2026-11-04 17:59:51,399  WARNING    ❌ No se pudo extraer el precio
+2026-11-04 17:59:51,435  WARNING    Saltando — no se obtuvo precio
+2026-11-04 17:59:51,436  INFO  
+🔍 ✈️ Vuelo Bucaramanga → Miami
+2026-11-04 17:59:51,436  INFO    APIs de vuelo no disponibles; usando Skyscanner como respaldo
+2026-11-04 17:59:51,566  INFO    Abriendo: https://www.google.com/flights?hl=es#search;f=BGA;t=MIA;d=20...
+2026-11-04 17:59:55,660  WARNING    ❌ No se pudo extraer el precio
+2026-11-04 17:59:55,691  WARNING    Saltando — no se obtuvo precio
+2026-11-04 17:59:55,692  INFO  
+🔍 🎮 Próximos juegos Game Pass
+2026-11-04 17:59:55,830  INFO    Abriendo: https://www.xbox.com/en-US/xbox-game-pass/games...
+2026-11-04 18:00:00,707  WARNING    ❌ No se pudo extraer el precio
+2026-11-04 18:00:00,742  WARNING    Saltando — no se obtuvo precio
+2026-11-04 18:00:00,758  INFO  
+✅ Revisión completa — 0 alerta(s)
+
+2026-11-04 18:00:00,931  ERROR  Error enviando Discord: HTTP 404 {"message": "Unknown Webhook", "code": 10015}
+2026-11-04 18:00:01,202  INFO  Mensaje enviado a ntfy
+2026-11-04 18:00:01,362  ERROR  Error enviando Discord: HTTP 404 {"message": "Unknown Webhook", "code": 10015}
+2026-11-04 18:00:01,598  INFO  Mensaje enviado a ntfy
