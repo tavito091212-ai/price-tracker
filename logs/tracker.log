@@ -36356,3 +36356,33 @@
 2026-11-12 20:50:41,750  INFO  Mensaje enviado a ntfy
 2026-11-12 20:50:41,887  ERROR  Error enviando Discord: HTTP 404 {"message": "Unknown Webhook", "code": 10015}
 2026-11-12 20:50:41,988  INFO  Mensaje enviado a ntfy
+2026-11-13 01:51:20,906  INFO  
+──────────────────────────────────────────────────
+2026-11-13 01:51:20,906  INFO  ▶ Revisando 3 producto(s) — 2026-11-13 01:51
+2026-11-13 01:51:20,906  INFO  ──────────────────────────────────────────────────
+2026-11-13 01:51:21,096  INFO  
+🔍 ✈️ Vuelo Bogotá → Miami
+2026-11-13 01:51:21,096  INFO    APIs de vuelo no disponibles; usando Skyscanner como respaldo
+2026-11-13 01:51:22,151  INFO    Abriendo: https://www.google.com/flights?hl=es#search;f=BOG;t=MIA;d=20...
+2026-11-13 01:51:26,495  WARNING    ❌ No se pudo extraer el precio
+2026-11-13 01:51:26,523  WARNING    Saltando — no se obtuvo precio
+2026-11-13 01:51:26,524  INFO  
+🔍 ✈️ Vuelo Bucaramanga → Miami
+2026-11-13 01:51:26,524  INFO    APIs de vuelo no disponibles; usando Skyscanner como respaldo
+2026-11-13 01:51:26,666  INFO    Abriendo: https://www.google.com/flights?hl=es#search;f=BGA;t=MIA;d=20...
+2026-11-13 01:51:30,739  WARNING    ❌ No se pudo extraer el precio
+2026-11-13 01:51:30,770  WARNING    Saltando — no se obtuvo precio
+2026-11-13 01:51:30,771  INFO  
+🔍 🎮 Próximos juegos Game Pass
+2026-11-13 01:51:31,109  INFO    Abriendo: https://www.xbox.com/en-US/xbox-game-pass/games...
+2026-11-13 01:51:36,727  WARNING    ❌ No se pudo extraer el precio
+2026-11-13 01:51:36,763  WARNING    Saltando — no se obtuvo precio
+2026-11-13 01:51:36,823  INFO  
+✅ Revisión completa — 0 alerta(s)
+
+2026-11-13 01:51:36,921  ERROR  Error enviando Discord: HTTP 404 {"message": "Unknown Webhook", "code": 10015}
+2026-11-13 01:51:36,980  INFO  Mensaje enviado a ntfy
+2026-11-13 01:51:37,072  ERROR  Error enviando Discord: HTTP 404 {"message": "Unknown Webhook", "code": 10015}
+2026-11-13 01:51:37,117  INFO  Mensaje enviado a ntfy
+2026-11-13 01:51:37,201  ERROR  Error enviando Discord: HTTP 404 {"message": "Unknown Webhook", "code": 10015}
+2026-11-13 01:51:37,246  INFO  Mensaje enviado a ntfy
